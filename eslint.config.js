@@ -29,7 +29,7 @@ export default {
       // custom rules
       'prefer-arrow-callback': 'error',
       'prefer-template': 'error',
-      quotes: ['error', 'single'],
+
       'check-file/filename-naming-convention': [
          'error',
          {
