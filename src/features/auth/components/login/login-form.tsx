@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+import { useAuth } from '@/features/auth';
 import { Button } from '@/shared/components/ui/button';
 import {
    Form,
@@ -28,23 +29,19 @@ const formSchema = z.object({
 export type LoginFormValues = z.infer<typeof formSchema>;
 
 export function LoginForm() {
+   const { login, isLoading } = useAuth();
+
    const form = useForm<LoginFormValues>({
       resolver: zodResolver(formSchema),
       defaultValues: {
-         email: '',
-         password: '',
+         email: 'patient@email.com',
+         password: 'password',
       },
    });
 
    const handleSubmit = async (values: LoginFormValues) => {
       try {
-         toast(
-            <pre className='mt-2 w-[320px] rounded-md bg-slate-950 p-4'>
-               <code className='text-white'>
-                  {JSON.stringify(values, null, 2)}
-               </code>
-            </pre>
-         );
+         await login(values);
       } catch (error) {
          console.error('Form submission error', error);
          toast.error('Failed to submit the form. Please try again.');
@@ -94,8 +91,8 @@ export function LoginForm() {
                   )}
                />
 
-               <Button type='submit' className='w-full'>
-                  Login
+               <Button type='submit' className='w-full' disabled={isLoading}>
+                  {isLoading ? 'Logging in...' : 'Login'}
                </Button>
             </div>
          </form>

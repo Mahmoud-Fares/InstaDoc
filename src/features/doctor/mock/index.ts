@@ -1,0 +1,85 @@
+import { Doctor } from '@/features/doctor/types/doctor';
+
+export const DOCTORS: Doctor[] = [
+   {
+      id: 'dr1',
+      email: 'doctor@email.com',
+      password: 'password',
+      name: 'Dr. Williams',
+      role: 'doctor',
+      dateOfBirth: '1970-03-10',
+      specialties: ['Cardiology', 'Internal Medicine'],
+      qualifications: ['MD', 'FACC'],
+      education: [
+         'Harvard Medical School',
+         'Residency at Massachusetts General Hospital',
+      ],
+      experience: [
+         '10+ years in cardiology practice',
+         'Chief of Cardiology at City Hospital (2018-2020)',
+      ],
+      bio: 'Dr. Williams is a board-certified cardiologist specializing in preventive cardiology and heart disease management.',
+      workInfo: {
+         name: 'Heart Health Associates',
+         address: '123 Medical Pkwy, Boston, MA 02215',
+         phone: '(555) 789-0123',
+      },
+      fees: 100,
+      averageRating: 4.8,
+      reviewCount: 124,
+   },
+   {
+      id: 'dr2',
+      email: 'dr.johnson@example.com',
+      password: 'password',
+      name: 'Dr. Johnson',
+      role: 'doctor',
+      dateOfBirth: '1975-07-15',
+      specialties: ['Family Medicine', 'Pediatrics'],
+      qualifications: ['MD', 'FAAFP'],
+      education: [
+         'Johns Hopkins University School of Medicine',
+         'Residency at Johns Hopkins Hospital',
+      ],
+      experience: [
+         '15+ years in family medicine',
+         'Family physician at Community Health Center (2010-Present)',
+      ],
+      bio: 'Dr. Johnson is a compassionate family physician dedicated to providing comprehensive care for patients of all ages.',
+      workInfo: {
+         name: 'Family Care Medical Group',
+         address: '456 Wellness Ave, Baltimore, MD 21287',
+         phone: '(555) 456-7890',
+      },
+      fees: 200,
+      averageRating: 4.9,
+      reviewCount: 203,
+   },
+   {
+      id: 'dr3',
+      email: 'dr.patel@example.com',
+      password: 'password',
+      name: 'Dr. Patel',
+      role: 'doctor',
+      dateOfBirth: '1980-05-20',
+      specialties: ['Neurology'],
+      qualifications: ['MD', 'PhD', 'FAAN'],
+      education: [
+         'Stanford University School of Medicine',
+         'Neurology Residency at UCSF Medical Center',
+      ],
+      experience: [
+         '12+ years specializing in neurodegenerative disorders',
+         'Director of Neurology Research at University Hospital (2015-Present)',
+      ],
+      bio: 'Dr. Patel is a neurologist specializing in the diagnosis and treatment of complex neurological disorders and neurodegenerative diseases.',
+      workInfo: {
+         name: 'Advanced Neurology Center',
+         address: '789 Brain Way, San Francisco, CA 94143',
+         phone: '(555) 567-8901',
+      },
+      fees: 300,
+      averageRating: 4.7,
+      reviewCount: 98,
+   },
+];
