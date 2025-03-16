@@ -3,9 +3,10 @@ import { toast } from 'sonner';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import { wait } from '@/shared/lib/utils';
+
 import { DOCTORS, Doctor } from '@/features/doctor';
 import { PATIENTS, Patient } from '@/features/patient';
-import { wait } from '@/shared/lib/utils';
 
 type AuthUser = Patient | Doctor;
 

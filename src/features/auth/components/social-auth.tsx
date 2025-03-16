@@ -1,7 +1,8 @@
 import { toast } from 'sonner';
 
-import GoogleIcon from '@/features/auth/components/google-icon';
 import { Button } from '@/shared/components/ui/button';
+
+import GoogleIcon from '@/features/auth/components/google-icon';
 
 export function SocialAuth() {
    return <GoogleLoginButton />;

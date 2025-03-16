@@ -1,7 +1,3 @@
-import { LoginFooter } from '@/features/auth/components/login/login-footer';
-import { LoginForm } from '@/features/auth/components/login/login-form';
-import { OrSeparator } from '@/features/auth/components/or-separator';
-import { SocialAuth } from '@/features/auth/components/social-auth';
 import {
    Card,
    CardContent,
@@ -9,6 +5,11 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+
+import { LoginFooter } from '@/features/auth/components/login/login-footer';
+import { LoginForm } from '@/features/auth/components/login/login-form';
+import { OrSeparator } from '@/features/auth/components/or-separator';
+import { SocialAuth } from '@/features/auth/components/social-auth';
 
 export default function LoginCard() {
    return (

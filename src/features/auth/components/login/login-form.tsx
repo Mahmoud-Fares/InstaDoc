@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { useAuth } from '@/features/auth';
 import { Button } from '@/shared/components/ui/button';
 import {
    Form,
@@ -17,6 +16,8 @@ import {
 } from '@/shared/components/ui/form';
 import { Input } from '@/shared/components/ui/input';
 import { PasswordInput } from '@/shared/components/ui/password';
+
+import { useAuth } from '@/features/auth';
 
 const formSchema = z.object({
    email: z.string().email({ message: 'Invalid email address' }),

@@ -1,7 +1,3 @@
-import { OrSeparator } from '@/features/auth/components/or-separator';
-import { SignupFooter } from '@/features/auth/components/signup/signup-footer';
-import { SignupForm } from '@/features/auth/components/signup/signup-form';
-import { SocialAuth } from '@/features/auth/components/social-auth';
 import {
    Card,
    CardContent,
@@ -9,6 +5,11 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+
+import { OrSeparator } from '@/features/auth/components/or-separator';
+import { SignupFooter } from '@/features/auth/components/signup/signup-footer';
+import { SignupForm } from '@/features/auth/components/signup/signup-form';
+import { SocialAuth } from '@/features/auth/components/social-auth';
 
 export default function SignupCard() {
    return (
