@@ -1,5 +1,6 @@
 import { toast } from 'sonner';
 
+import GoogleIcon from '@/features/auth/components/google-icon';
 import { Button } from '@/shared/components/ui/button';
 
 export function SocialAuth() {
@@ -13,7 +14,8 @@ function GoogleLoginButton() {
          className='w-full'
          onClick={() => toast.info('Google login clicked')}
       >
-         Continue with Google
+         <GoogleIcon />
+         <span className='hidden sm:flex'>Continue with Google</span>
       </Button>
    );
 }

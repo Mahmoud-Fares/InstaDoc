@@ -1,6 +1,6 @@
-import { LoginFooter } from '@/features/auth/components/login/login-footer';
-import { LoginForm } from '@/features/auth/components/login/login-form';
 import { OrSeparator } from '@/features/auth/components/or-separator';
+import { SignupFooter } from '@/features/auth/components/signup/signup-footer';
+import { SignupForm } from '@/features/auth/components/signup/signup-form';
 import { SocialAuth } from '@/features/auth/components/social-auth';
 import {
    Card,
@@ -10,25 +10,25 @@ import {
    CardTitle,
 } from '@/shared/components/ui/card';
 
-export default function LoginCard() {
+export default function SignupCard() {
    return (
       <div className='flex h-full min-h-[50vh] w-full flex-col items-center justify-center px-4'>
          <Card className='w-full'>
             <CardHeader>
                {/* todo: add logo */}
-               <CardTitle className='text-2xl'>Login</CardTitle>
+               <CardTitle className='text-2xl'>Register</CardTitle>
                <CardDescription>
-                  Enter your email and password to login to your account.
+                  Create a new account by filling out the form below.
                </CardDescription>
             </CardHeader>
 
             <CardContent className='space-y-4'>
-               <LoginForm />
+               <SignupForm />
 
                <OrSeparator />
                <SocialAuth />
 
-               <LoginFooter />
+               <SignupFooter />
             </CardContent>
          </Card>
       </div>
