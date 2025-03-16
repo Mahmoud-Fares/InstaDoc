@@ -1,7 +1,8 @@
 import { toast } from 'sonner';
 
-import { useAuth } from '@/features/auth';
 import { Button } from '@/shared/components/ui/button';
+
+import { useAuth } from '@/features/auth';
 
 export default function Home() {
    const { currentUser, isAuthenticated, logout } = useAuth();

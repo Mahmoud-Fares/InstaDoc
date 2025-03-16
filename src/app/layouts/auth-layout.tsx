@@ -1,11 +1,23 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import authImage from '@/features/auth/assets/auth-image.svg';
+import { Outlet, useNavigate } from 'react-router-dom';
+
 import Container from '@/shared/components/container';
 import { cn } from '@/shared/lib/utils';
 
+import { useAuth } from '@/features/auth';
+import authImage from '@/features/auth/assets/auth-image.svg';
+
 export default function AuthLayout() {
-   // todo: get the user data and redirect them if they are logged in
+   const { currentUser } = useAuth();
+   const navigate = useNavigate();
+
+   useEffect(() => {
+      if (currentUser) {
+         navigate('/');
+      }
+   }, [currentUser, navigate]);
+
    return (
       <Container className='py-section flex min-h-screen'>
          <AuthFormWrapper className='flex w-full flex-col items-center justify-center lg:basis-1/2 xl:items-start' />
