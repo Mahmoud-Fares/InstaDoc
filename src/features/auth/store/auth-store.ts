@@ -51,11 +51,7 @@ export const useAuthStore = create<AuthState>()(
 
                toast.success('Successfully logged in!');
 
-               navigate(
-                  authenticatedUser.role === 'patient'
-                     ? '/patient/dashboard'
-                     : '/doctor/dashboard'
-               );
+               navigate('/dashboard');
             } else {
                set({ isLoading: false });
 

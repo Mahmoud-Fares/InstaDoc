@@ -11,6 +11,7 @@ const LoginPage = lazy(() => import('@/app/pages/auth/login'));
 const SignUpPage = lazy(() => import('@/app/pages/auth/signup'));
 
 const Home = lazy(() => import('@/app/pages/home'));
+const Profile = lazy(() => import('@/app/pages/profile/profile-page'));
 
 export const router = createBrowserRouter([
    {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
          {
             index: true,
             element: <Home />,
+         },
+         {
+            path: 'profile',
+            element: <Profile />,
          },
       ],
    },

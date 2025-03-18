@@ -6,6 +6,7 @@ export const DOCTORS: Doctor[] = [
       email: 'doctor@email.com',
       password: 'password',
       name: 'Dr. Williams',
+      phone: '(555) 789-0123',
       role: 'doctor',
       dateOfBirth: '1970-03-10',
       specialties: ['Cardiology', 'Internal Medicine'],
@@ -27,12 +28,34 @@ export const DOCTORS: Doctor[] = [
       fees: 100,
       averageRating: 4.8,
       reviewCount: 124,
+      schedule: {
+         monday: [
+            { start: '09:00', end: '12:00' },
+            { start: '13:00', end: '17:00' },
+         ],
+         tuesday: [
+            { start: '09:00', end: '12:00' },
+            { start: '13:00', end: '17:00' },
+         ],
+         wednesday: [{ start: '09:00', end: '12:00' }],
+         thursday: [
+            { start: '09:00', end: '12:00' },
+            { start: '13:00', end: '17:00' },
+         ],
+         friday: [
+            { start: '09:00', end: '12:00' },
+            { start: '13:00', end: '16:00' },
+         ],
+         saturday: [],
+         sunday: [],
+      },
    },
    {
       id: 'dr2',
       email: 'dr.johnson@example.com',
       password: 'password',
       name: 'Dr. Johnson',
+      phone: '(555) 456-7890',
       role: 'doctor',
       dateOfBirth: '1975-07-15',
       specialties: ['Family Medicine', 'Pediatrics'],
@@ -54,12 +77,34 @@ export const DOCTORS: Doctor[] = [
       fees: 200,
       averageRating: 4.9,
       reviewCount: 203,
+      schedule: {
+         monday: [
+            { start: '08:00', end: '12:00' },
+            { start: '13:00', end: '18:00' },
+         ],
+         tuesday: [
+            { start: '08:00', end: '12:00' },
+            { start: '13:00', end: '18:00' },
+         ],
+         wednesday: [
+            { start: '08:00', end: '12:00' },
+            { start: '13:00', end: '18:00' },
+         ],
+         thursday: [{ start: '08:00', end: '12:00' }],
+         friday: [
+            { start: '08:00', end: '12:00' },
+            { start: '13:00', end: '18:00' },
+         ],
+         saturday: [{ start: '09:00', end: '13:00' }],
+         sunday: [],
+      },
    },
    {
       id: 'dr3',
       email: 'dr.patel@example.com',
       password: 'password',
       name: 'Dr. Patel',
+      phone: '(555) 567-8901',
       role: 'doctor',
       dateOfBirth: '1980-05-20',
       specialties: ['Neurology'],
@@ -81,5 +126,26 @@ export const DOCTORS: Doctor[] = [
       fees: 300,
       averageRating: 4.7,
       reviewCount: 98,
+      schedule: {
+         monday: [
+            { start: '10:00', end: '13:00' },
+            { start: '14:00', end: '19:00' },
+         ],
+         tuesday: [
+            { start: '10:00', end: '13:00' },
+            { start: '14:00', end: '19:00' },
+         ],
+         wednesday: [],
+         thursday: [
+            { start: '10:00', end: '13:00' },
+            { start: '14:00', end: '19:00' },
+         ],
+         friday: [
+            { start: '10:00', end: '13:00' },
+            { start: '14:00', end: '19:00' },
+         ],
+         saturday: [],
+         sunday: [],
+      },
    },
 ];
