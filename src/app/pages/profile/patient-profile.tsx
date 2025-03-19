@@ -10,9 +10,10 @@ export default function PatientProfile() {
 
    return (
       <Container className='grid gap-6 md:grid-cols-3'>
-         <PersonalInformation profile={patient} />
+         <PersonalInformation profile={patient} className='md:col-span-3' />
 
-         <div className='md:col-span-2' />
+         {/* //todo add the medical info if needed */}
+         {/* <div className='md:col-span-2' /> */}
 
          <EmergencyContact patient={patient} />
 
