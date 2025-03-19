@@ -8,5 +8,5 @@
       "*.css": "tailwindcss"
    },
    "typescript.tsdk": "node_modules/typescript/lib",
-   "conventionalCommits.scopes": ["auth", "Doctor", "Appointment"]
+   "conventionalCommits.scopes": ["auth", "Doctor", "Appointment", "Patient"]
 }
