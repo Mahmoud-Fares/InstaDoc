@@ -1,7 +1,6 @@
 import { Clock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@/shared/components/ui/button';
+import EmptyState from '@/shared/components/empty-state';
 import {
    Card,
    CardContent,
@@ -10,14 +9,25 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+import { cn } from '@/shared/lib/utils';
 
-import { Doctor } from '@/features/doctor/types/doctor';
+import UpdateAvailabilityButton from '@/features/doctor/components/buttons/update-availability';
+import ScheduleDetails from '@/features/doctor/components/profile/schedule/schedule-details';
+import { Doctor, Schedule } from '@/features/doctor/types/doctor';
 
-export default function DoctorSchedule({ profile }: { profile: Doctor }) {
-   const navigate = useNavigate();
+type DoctorScheduleProps = {
+   doctor: Doctor;
+   className?: string;
+};
+
+export default function DoctorSchedule({
+   doctor,
+   className,
+}: DoctorScheduleProps) {
+   const schedule = doctor.schedule as Schedule | undefined;
 
    return (
-      <Card className='md:col-span-2'>
+      <Card className={cn(className)}>
          <CardHeader>
             <CardTitle className='flex items-center'>
                <Clock className='mr-2 h-5 w-5' />
@@ -27,46 +37,15 @@ export default function DoctorSchedule({ profile }: { profile: Doctor }) {
          </CardHeader>
 
          <CardContent>
-            {profile?.schedule ? (
-               <div className='space-y-4'>
-                  {Object.entries(profile.schedule).map(
-                     ([day, slots]: [string, any]) => (
-                        <div key={day} className='flex items-start'>
-                           <div className='w-24 font-medium capitalize'>
-                              {day}
-                           </div>
-                           <div>
-                              {slots.length > 0 ? (
-                                 slots.map((slot: any, index: number) => (
-                                    <div key={index} className='text-sm'>
-                                       {slot.start} - {slot.end}
-                                    </div>
-                                 ))
-                              ) : (
-                                 <div className='text-sm text-muted-foreground'>
-                                    Not available
-                                 </div>
-                              )}
-                           </div>
-                        </div>
-                     )
-                  )}
-               </div>
+            {schedule ? (
+               <ScheduleDetails schedule={schedule} />
             ) : (
-               <p className='text-muted-foreground'>
-                  No availability schedule recorded
-               </p>
+               <EmptyState message='No availability schedule recorded' />
             )}
          </CardContent>
 
          <CardFooter>
-            <Button
-               variant='outline'
-               className='w-full'
-               onClick={() => navigate('/update-availability')}
-            >
-               Update Availability
-            </Button>
+            <UpdateAvailabilityButton doctor={doctor} />
          </CardFooter>
       </Card>
    );

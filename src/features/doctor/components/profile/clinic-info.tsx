@@ -1,7 +1,5 @@
 import { MapPin } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-import { Button } from '@/shared/components/ui/button';
 import {
    Card,
    CardContent,
@@ -10,11 +8,15 @@ import {
    CardTitle,
 } from '@/shared/components/ui/card';
 
+import UpdateClinicButton from '@/features/doctor/components/buttons/update-clinic-btn';
+import ClinicInfoDetails from '@/features/doctor/components/profile/clinic/clinic-info-details';
 import { Doctor } from '@/features/doctor/types/doctor';
 
-export default function ClinicInformation({ profile }: { profile: Doctor }) {
-   const navigate = useNavigate();
+type ClinicInformationProps = {
+   doctor: Doctor;
+};
 
+export default function ClinicInformation({ doctor }: ClinicInformationProps) {
    return (
       <Card>
          <CardHeader>
@@ -25,32 +27,11 @@ export default function ClinicInformation({ profile }: { profile: Doctor }) {
          </CardHeader>
 
          <CardContent>
-            {profile?.workInfo ? (
-               <div className='space-y-2'>
-                  <p className='font-medium'>{profile.workInfo.name}</p>
-                  <p className='text-sm text-muted-foreground'>
-                     {profile.workInfo.address}
-                  </p>
-                  <p className='text-sm text-muted-foreground'>
-                     Phone: {profile.workInfo.phone}
-                  </p>
-               </div>
-            ) : (
-               <p className='text-muted-foreground'>
-                  No Clinic information recorded
-               </p>
-            )}
+            <ClinicInfoDetails doctor={doctor} />
          </CardContent>
 
          <CardFooter>
-            <Button
-               variant='outline'
-               size='sm'
-               className='w-full'
-               onClick={() => navigate('/settings')}
-            >
-               Update Clinic Information
-            </Button>
+            <UpdateClinicButton doctor={doctor} />
          </CardFooter>
       </Card>
    );

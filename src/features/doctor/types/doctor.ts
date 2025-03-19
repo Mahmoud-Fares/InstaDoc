@@ -14,19 +14,22 @@ export type TimeSlot = {
    end: string; // 24-hour format HH:MM
 };
 
+export type Schedule = Record<DayOfWeek, TimeSlot[]>;
+
+export type ClinicInfo = {
+   name: string;
+   address: string;
+   phone: string;
+};
+
 export type Doctor = User & {
    specialties: string[];
    qualifications: string[]; // missing
    education: string[]; // missing
    experience: string[]; // missing
-   workInfo: {
-      // missing
-      name: string;
-      address: string;
-      phone: string;
-   };
+   clinicInfo: ClinicInfo; // missing
    fees: number;
    averageRating: number; // should we add a rating system?
    reviewCount: number; // should we add a review system?
-   schedule: Record<DayOfWeek, TimeSlot[]>;
+   schedule: Schedule;
 };

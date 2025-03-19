@@ -20,7 +20,7 @@ export const DOCTORS: Doctor[] = [
          'Chief of Cardiology at City Hospital (2018-2020)',
       ],
       bio: 'Dr. Williams is a board-certified cardiologist specializing in preventive cardiology and heart disease management.',
-      workInfo: {
+      clinicInfo: {
          name: 'Heart Health Associates',
          address: '123 Medical Pkwy, Boston, MA 02215',
          phone: '(555) 789-0123',
@@ -69,7 +69,7 @@ export const DOCTORS: Doctor[] = [
          'Family physician at Community Health Center (2010-Present)',
       ],
       bio: 'Dr. Johnson is a compassionate family physician dedicated to providing comprehensive care for patients of all ages.',
-      workInfo: {
+      clinicInfo: {
          name: 'Family Care Medical Group',
          address: '456 Wellness Ave, Baltimore, MD 21287',
          phone: '(555) 456-7890',
@@ -118,7 +118,7 @@ export const DOCTORS: Doctor[] = [
          'Director of Neurology Research at University Hospital (2015-Present)',
       ],
       bio: 'Dr. Patel is a neurologist specializing in the diagnosis and treatment of complex neurological disorders and neurodegenerative diseases.',
-      workInfo: {
+      clinicInfo: {
          name: 'Advanced Neurology Center',
          address: '789 Brain Way, San Francisco, CA 94143',
          phone: '(555) 567-8901',

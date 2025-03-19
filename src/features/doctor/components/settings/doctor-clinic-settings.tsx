@@ -38,7 +38,7 @@ export default function DoctorClinicSettings({
                      <Label htmlFor='ClinicName'>Clinic Name</Label>
                      <Input
                         id='ClinicName'
-                        value={currentUser?.workInfo.name}
+                        value={currentUser?.clinicInfo.name}
                         placeholder='Heart Health Associates'
                      />
                   </div>
@@ -47,7 +47,7 @@ export default function DoctorClinicSettings({
                      <Label htmlFor='ClinicAddress'>Clinic Address</Label>
                      <Input
                         id='ClinicAddress'
-                        value={currentUser?.workInfo.address}
+                        value={currentUser?.clinicInfo.address}
                         placeholder='123 Medical Pkwy, Boston, MA 02215'
                      />
                   </div>
@@ -56,7 +56,7 @@ export default function DoctorClinicSettings({
                      <Label htmlFor='ClinicPhone'>Clinic Phone</Label>
                      <Input
                         id='ClinicPhone'
-                        value={currentUser?.workInfo.phone}
+                        value={currentUser?.clinicInfo.phone}
                         placeholder='(555) 789-0123'
                      />
                   </div>

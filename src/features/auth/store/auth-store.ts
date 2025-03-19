@@ -8,7 +8,7 @@ import { wait } from '@/shared/lib/utils';
 import { DOCTORS, Doctor } from '@/features/doctor';
 import { PATIENTS, Patient } from '@/features/patient';
 
-type AuthUser = Patient | Doctor;
+export type AuthUser = Patient | Doctor;
 
 export type LoginProps = {
    email: string;
