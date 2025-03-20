@@ -9,14 +9,27 @@ export default function ErrorBoundary() {
    return (
       <div className='flex min-h-screen items-center justify-center p-4'>
          <div className='space-y-2 text-center'>
-            <h1 className='text-2xl font-bold text-red-600'>Oops!</h1>
-            <p className='text-gray-600'>Something went wrong.</p>
-            <p className='text-sm text-gray-500'>
+            <h1 className='text-2xl font-bold text-destructive'>Oops!</h1>
+            <p className='text-lg font-semibold text-muted-foreground'>
+               Something went wrong :(
+            </p>
+            <p className='text-sm text-muted-foreground'>
                {error instanceof Error
                   ? error.message
                   : 'Unknown error occurred'}
             </p>
-            <Button onClick={() => navigate('/')}>Go Home</Button>
+
+            <div className='flex justify-center gap-4'>
+               <Button
+                  onClick={() => window.location.assign(window.location.origin)}
+               >
+                  Refresh
+               </Button>
+
+               <Button onClick={() => navigate('/', { replace: true })}>
+                  Go Home
+               </Button>
+            </div>
          </div>
       </div>
    );

@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import ErrorBoundary from '@/shared/components/error-boundary';
 
 const MainLayout = lazy(() => import('@/app/layouts/main-layout'));
+const ProtectedLayout = lazy(() => import('@/app/layouts/protected-layout'));
 const AuthLayout = lazy(() => import('@/app/layouts/auth-layout'));
 
 const LoginPage = lazy(() => import('@/app/pages/auth/login'));
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
             index: true,
             element: <Home />,
          },
+      ],
+   },
+   // Protected rotes group
+   {
+      path: '/',
+      element: <ProtectedLayout />,
+      errorElement: <ErrorBoundary />,
+      children: [
          {
             path: 'profile',
             element: <Profile />,

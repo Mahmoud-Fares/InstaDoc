@@ -1,13 +1,15 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom';
 
-export default function MainLayout() {
+type MainLayoutProps = {
+   children?: React.ReactNode;
+};
+
+export default function MainLayout({ children }: MainLayoutProps) {
    return (
       <>
          <ScrollRestoration />
          <div className='flex min-h-screen flex-col'>
-            <main>
-               <Outlet />
-            </main>
+            <main>{children ?? <Outlet />}</main>
          </div>
       </>
    );

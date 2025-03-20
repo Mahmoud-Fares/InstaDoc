@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import Container from '@/shared/components/container';
 import { cn } from '@/shared/lib/utils';
@@ -9,14 +7,9 @@ import { useAuth } from '@/features/auth';
 import authImage from '@/features/auth/assets/auth-image.svg';
 
 export default function AuthLayout() {
-   const { currentUser } = useAuth();
-   const navigate = useNavigate();
+   const { isAuthenticated } = useAuth();
 
-   useEffect(() => {
-      if (currentUser) {
-         navigate('/');
-      }
-   }, [currentUser, navigate]);
+   if (isAuthenticated) return <Navigate to='/' replace />;
 
    return (
       <Container className='py-section flex min-h-screen'>
