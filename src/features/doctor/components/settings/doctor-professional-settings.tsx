@@ -13,22 +13,16 @@ import {
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
 import { Separator } from '@/shared/components/ui/separator';
-import { TabsContent } from '@/shared/components/ui/tabs';
 import { Textarea } from '@/shared/components/ui/textarea';
 
-import { Doctor } from '@/features/doctor/types/doctor';
+import { isDoctor, useAuth } from '@/features/auth';
 
-type DoctorProfessionalSettingsProps = {
-   currentUser: Doctor;
-};
-
-export default function DoctorProfessionalSettings({
-   currentUser,
-}: DoctorProfessionalSettingsProps) {
+export default function DoctorProfessionalSettings() {
    const navigate = useNavigate();
+   const { currentUser } = useAuth();
 
    return (
-      <TabsContent value='professional'>
+      isDoctor(currentUser!) && (
          <Card>
             <CardHeader>
                <CardTitle>Professional Information</CardTitle>
@@ -189,6 +183,6 @@ export default function DoctorProfessionalSettings({
                <Button>Save Changes</Button>
             </CardFooter>
          </Card>
-      </TabsContent>
+      )
    );
 }

@@ -10,7 +10,7 @@ import {
 
 import EmergencySettings from '@/features/patient/components/settings/emergency-settings';
 
-const TABS = [
+const PATIENT_SETTINGS_TABS = [
    {
       label: 'Personal',
       value: 'personal',
@@ -35,14 +35,14 @@ export default function PatientSettings() {
 
          <Tabs defaultValue='personal' className='space-y-6'>
             <TabsList className='flex h-fit w-fit flex-wrap justify-start gap-2 p-2'>
-               {TABS.map((tab) => (
+               {PATIENT_SETTINGS_TABS.map((tab) => (
                   <TabsTrigger key={tab.value} value={tab.value}>
                      {tab.label}
                   </TabsTrigger>
                ))}
             </TabsList>
 
-            {TABS.map((tab) => (
+            {PATIENT_SETTINGS_TABS.map((tab) => (
                <TabsContent key={tab.value} value={tab.value}>
                   {tab.component}
                </TabsContent>

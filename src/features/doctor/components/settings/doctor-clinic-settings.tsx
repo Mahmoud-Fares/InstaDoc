@@ -11,21 +11,15 @@ import {
 } from '@/shared/components/ui/card';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
-import { TabsContent } from '@/shared/components/ui/tabs';
 
-import { Doctor } from '@/features/doctor/types/doctor';
+import { isDoctor, useAuth } from '@/features/auth';
 
-type DoctorClinicSettingsProps = {
-   currentUser: Doctor;
-};
-
-export default function DoctorClinicSettings({
-   currentUser,
-}: DoctorClinicSettingsProps) {
+export default function DoctorClinicSettings() {
    const navigate = useNavigate();
+   const { currentUser } = useAuth();
 
    return (
-      <TabsContent value='clinic'>
+      isDoctor(currentUser!) && (
          <Card>
             <CardHeader>
                <CardTitle>Clinic Information</CardTitle>
@@ -71,6 +65,6 @@ export default function DoctorClinicSettings({
                <Button>Save Changes</Button>
             </CardFooter>
          </Card>
-      </TabsContent>
+      )
    );
 }
