@@ -1,12 +1,17 @@
 import Container from '@/shared/components/container';
-import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
+import PersonalSettings from '@/shared/components/settings/personal-settings';
+import SecuritySettings from '@/shared/components/settings/security-settings';
+import {
+   Tabs,
+   TabsContent,
+   TabsList,
+   TabsTrigger,
+} from '@/shared/components/ui/tabs';
 
 import { DOCTORS } from '@/features/doctor';
-import ClinicTab from '@/features/doctor/components/settings/doctor-clinic-settings';
-import PersonalTab from '@/features/doctor/components/settings/doctor-personal-settings';
-import ProfessionalTab from '@/features/doctor/components/settings/doctor-professional-settings';
+import DoctorClinicSettings from '@/features/doctor/components/settings/doctor-clinic-settings';
+import DoctorProfessionalSettings from '@/features/doctor/components/settings/doctor-professional-settings';
 import DoctorScheduleSettings from '@/features/doctor/components/settings/doctor-schedule-settings';
-import DoctorSecurityTab from '@/features/doctor/components/settings/doctor-security-settings';
 
 export default function DoctorSettings() {
    const currentUser = DOCTORS[0];
@@ -24,15 +29,19 @@ export default function DoctorSettings() {
                <TabsTrigger value='security'>Security</TabsTrigger>
             </TabsList>
 
-            <PersonalTab currentUser={currentUser} />
+            <TabsContent value='personal'>
+               <PersonalSettings />
+            </TabsContent>
 
-            <ProfessionalTab currentUser={currentUser} />
+            <DoctorProfessionalSettings currentUser={currentUser} />
 
-            <ClinicTab currentUser={currentUser} />
+            <DoctorClinicSettings currentUser={currentUser} />
 
             <DoctorScheduleSettings />
 
-            <DoctorSecurityTab />
+            <TabsContent value='security'>
+               <SecuritySettings />
+            </TabsContent>
          </Tabs>
       </Container>
    );

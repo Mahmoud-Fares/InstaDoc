@@ -20,42 +20,39 @@ import {
 } from '@/shared/components/ui/card';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
-import { TabsContent } from '@/shared/components/ui/tabs';
 
-export default function DoctorSecuritySettings() {
+export default function SecuritySettings() {
    return (
-      <TabsContent value='security'>
-         <Card>
-            <CardHeader>
-               <CardTitle>Change Password</CardTitle>
-               <CardDescription>
-                  Update your password to keep your account secure
-               </CardDescription>
-            </CardHeader>
+      <Card>
+         <CardHeader>
+            <CardTitle>Change Password</CardTitle>
+            <CardDescription>
+               Update your password to keep your account secure
+            </CardDescription>
+         </CardHeader>
 
-            <CardContent className='space-y-4'>
-               <div className='space-y-2'>
-                  <Label htmlFor='current-password'>Current Password</Label>
-                  <Input id='current-password' type='password' />
-               </div>
+         <CardContent className='space-y-4'>
+            <div className='space-y-2'>
+               <Label htmlFor='current-password'>Current Password</Label>
+               <Input id='current-password' type='password' />
+            </div>
 
-               <div className='space-y-2'>
-                  <Label htmlFor='new-password'>New Password</Label>
-                  <Input id='new-password' type='password' />
-               </div>
+            <div className='space-y-2'>
+               <Label htmlFor='new-password'>New Password</Label>
+               <Input id='new-password' type='password' />
+            </div>
 
-               <div className='space-y-2'>
-                  <Label htmlFor='confirm-password'>Confirm New Password</Label>
-                  <Input id='confirm-password' type='password' />
-               </div>
-            </CardContent>
+            <div className='space-y-2'>
+               <Label htmlFor='confirm-password'>Confirm New Password</Label>
+               <Input id='confirm-password' type='password' />
+            </div>
+         </CardContent>
 
-            <CardFooter className='flex flex-wrap items-center justify-between'>
-               <Button>Change Password</Button>
-               <DeleteAccount />
-            </CardFooter>
-         </Card>
-      </TabsContent>
+         <CardFooter className='flex flex-wrap items-center justify-between'>
+            <Button>Change Password</Button>
+            <DeleteAccount />
+         </CardFooter>
+      </Card>
    );
 }
 
