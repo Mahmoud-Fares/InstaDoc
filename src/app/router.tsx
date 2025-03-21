@@ -18,6 +18,8 @@ const UpdateAvailability = lazy(
    () => import('@/app/pages/settings/updata-availability')
 );
 
+const NotFound = lazy(() => import('@/app/pages/not-found'));
+
 export const router = createBrowserRouter([
    {
       path: '/',
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
             index: true,
             element: <Home />,
          },
+         {
+            path: '*',
+            element: <NotFound />,
+         },
       ],
    },
    // Protected rotes group
@@ -37,7 +43,7 @@ export const router = createBrowserRouter([
       errorElement: <ErrorBoundary />,
       children: [
          {
-            path: 'profile',
+            path: 'profile/:slug?',
             element: <Profile />,
          },
          {

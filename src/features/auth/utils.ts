@@ -1,4 +1,4 @@
-import { AuthUser } from '@/features/auth/store/auth-store';
+import { AuthUser, useAuthStore } from '@/features/auth/store/auth-store';
 import { Doctor } from '@/features/doctor';
 import { Patient } from '@/features/patient';
 
@@ -15,4 +15,10 @@ export function isPatient(
    user: AuthUser | Omit<AuthUser, 'password'>
 ): user is Patient | Omit<Patient, 'password'> {
    return user.role === 'patient';
+}
+
+export function getUserBySlug(slug: string) {
+   const users = useAuthStore.getState().users;
+
+   return users.find((user) => user.slug === slug);
 }

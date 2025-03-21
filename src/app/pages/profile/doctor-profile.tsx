@@ -1,14 +1,12 @@
 import Container from '@/shared/components/container';
 import PersonalInformation from '@/shared/components/profile/personal-info';
 
-import { DOCTORS } from '@/features/doctor';
+import { Doctor } from '@/features/doctor';
 import ClinicInformation from '@/features/doctor/components/profile/clinic-info';
 import DoctorProfessionalInformation from '@/features/doctor/components/profile/doctor-professional-info';
 import DoctorSchedule from '@/features/doctor/components/profile/doctor-schedule';
 
-export default function DoctorProfile() {
-   const doctor = DOCTORS[0];
-
+export default function DoctorProfile({ doctor }: { doctor: Doctor }) {
    return (
       <Container className='grid gap-6 md:grid-cols-3'>
          <PersonalInformation profile={doctor} />

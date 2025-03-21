@@ -109,7 +109,10 @@ export default function UpdateAvailability({
          </CardContent>
 
          <CardFooter className='flex justify-end space-x-2'>
-            <Button variant='outline' onClick={() => navigate('/profile')}>
+            <Button
+               variant='outline'
+               onClick={() => navigate(`/profile/${currentUser.slug}`)}
+            >
                Cancel
             </Button>
             <Button>Save Availability</Button>
