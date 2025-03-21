@@ -5,7 +5,7 @@ type ViewToCurrentUserProps = {
    children: React.ReactNode;
 };
 
-export default function ViewToCurrentUser({
+export function ViewToCurrentUser({
    profile,
    children,
 }: ViewToCurrentUserProps) {

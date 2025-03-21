@@ -1,10 +1,11 @@
 import Container from '@/shared/components/container';
-import PersonalInformation from '@/shared/components/profile/personal-info';
 
 import { Doctor } from '@/features/doctor';
 import ClinicInformation from '@/features/doctor/components/profile/clinic-info';
 import DoctorProfessionalInformation from '@/features/doctor/components/profile/doctor-professional-info';
 import DoctorSchedule from '@/features/doctor/components/profile/doctor-schedule';
+
+import PersonalInformation from '@/app/pages/profile/components/personal-info';
 
 export default function DoctorProfile({ doctor }: { doctor: Doctor }) {
    return (

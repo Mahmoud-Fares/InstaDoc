@@ -1,6 +1,4 @@
 import Container from '@/shared/components/container';
-import PersonalSettings from '@/shared/components/settings/personal-settings';
-import SecuritySettings from '@/shared/components/settings/security-settings';
 import {
    Tabs,
    TabsContent,
@@ -11,6 +9,9 @@ import {
 import DoctorClinicSettings from '@/features/doctor/components/settings/doctor-clinic-settings';
 import DoctorProfessionalSettings from '@/features/doctor/components/settings/doctor-professional-settings';
 import DoctorScheduleSettings from '@/features/doctor/components/settings/doctor-schedule-settings';
+
+import PersonalSettings from '@/app/pages/settings/components/personal-settings';
+import SecuritySettings from '@/app/pages/settings/components/security-settings';
 
 const DOCTOR_SETTINGS_TABS = [
    {

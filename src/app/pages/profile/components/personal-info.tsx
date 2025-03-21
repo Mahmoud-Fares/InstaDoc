@@ -1,6 +1,3 @@
-import ContactInformation from '@/shared/components/profile/contact-info';
-import EditProfileButton from '@/shared/components/profile/edit-profile-btn';
-import ProfileAvatar from '@/shared/components/profile/profile-avatar';
 import {
    Card,
    CardContent,
@@ -14,6 +11,10 @@ import { cn } from '@/shared/lib/utils';
 import { AuthUser, isDoctor } from '@/features/auth';
 import DoctorRating from '@/features/doctor/components/doctor-rating';
 import PatientDayOfBirth from '@/features/patient/components/patient-day-of-birth';
+
+import ContactInformation from '@/app/pages/profile/components/contact-info';
+import EditProfileButton from '@/app/pages/profile/components/edit-profile-btn';
+import ProfileAvatar from '@/app/pages/profile/components/profile-avatar';
 
 type PersonalInformationProps = {
    profile: AuthUser;

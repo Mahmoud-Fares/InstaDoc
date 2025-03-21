@@ -1,9 +1,10 @@
 import Container from '@/shared/components/container';
-import PersonalInformation from '@/shared/components/profile/personal-info';
 
 import { Patient } from '@/features/patient';
 import EmergencyContact from '@/features/patient/components/profile/emergency-contact';
 import MedicalHistory from '@/features/patient/components/profile/medical-history';
+
+import PersonalInformation from '@/app/pages/profile/components/personal-info';
 
 export default function PatientProfile({ patient }: { patient: Patient }) {
    return (

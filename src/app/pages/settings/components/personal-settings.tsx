@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-import ProfileAvatar from '@/shared/components/profile/profile-avatar';
 import { Button } from '@/shared/components/ui/button';
 import {
    Card,
@@ -17,7 +16,9 @@ import { Separator } from '@/shared/components/ui/separator';
 import { AuthUser, isPatient, useAuth } from '@/features/auth';
 import { Patient } from '@/features/patient';
 
-import { DatePicker } from '../ui/date-picker';
+import ProfileAvatar from '@/app/pages/profile/components/profile-avatar';
+
+import { DatePicker } from '../../../../shared/components/ui/date-picker';
 
 export default function PersonalSettings() {
    const navigate = useNavigate();

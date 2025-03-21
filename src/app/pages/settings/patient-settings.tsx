@@ -1,6 +1,4 @@
 import Container from '@/shared/components/container';
-import PersonalSettings from '@/shared/components/settings/personal-settings';
-import SecuritySettings from '@/shared/components/settings/security-settings';
 import {
    Tabs,
    TabsContent,
@@ -9,6 +7,9 @@ import {
 } from '@/shared/components/ui/tabs';
 
 import EmergencySettings from '@/features/patient/components/settings/emergency-settings';
+
+import PersonalSettings from '@/app/pages/settings/components/personal-settings';
+import SecuritySettings from '@/app/pages/settings/components/security-settings';
 
 const PATIENT_SETTINGS_TABS = [
    {

@@ -6,7 +6,7 @@ type SignedOutProps = {
    children: ReactNode;
 };
 
-export default function SignedOut({ children }: SignedOutProps) {
+export function SignedOut({ children }: SignedOutProps) {
    const { currentUser } = useAuth();
 
    return !currentUser && <>{children}</>;

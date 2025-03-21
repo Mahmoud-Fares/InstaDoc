@@ -6,7 +6,7 @@ type SignedInProps = {
    children: ReactNode;
 };
 
-export default function SignedIn({ children }: SignedInProps) {
+export function SignedIn({ children }: SignedInProps) {
    const { currentUser } = useAuth();
 
    return currentUser && <>{children}</>;

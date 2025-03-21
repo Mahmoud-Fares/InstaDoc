@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/shared/components/ui/button';
-import ViewToCurrentUser from '@/shared/components/view-to-current-user';
 import { cn } from '@/shared/lib/utils';
 
-import { AuthUser } from '@/features/auth';
+import { AuthUser, ViewToCurrentUser } from '@/features/auth';
 
 type EditProfileButtonProps = {
    profile: AuthUser;

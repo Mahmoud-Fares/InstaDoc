@@ -11,9 +11,9 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
-import ViewToCurrentUser from '@/shared/components/view-to-current-user';
 
 import { getPatientMedicalHistory } from '@/features/appointment';
+import { ViewToCurrentUser } from '@/features/auth';
 import { Patient } from '@/features/patient/types/patient';
 
 import MedicalHistoryDetails from './medical-history/details';

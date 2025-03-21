@@ -4,17 +4,17 @@ import { UserRole } from '@/shared/types/user';
 
 import { useAuth } from '@/features/auth';
 
-type AllowedToProps = {
+type ViewOnlyToProps = {
    allowedRoles: UserRole[];
    children: ReactNode;
    fallback?: ReactNode;
 };
 
-export const AllowedTo = ({
+export const ViewOnlyTo = ({
    allowedRoles,
    children,
    fallback = null,
-}: AllowedToProps) => {
+}: ViewOnlyToProps) => {
    const { currentUser } = useAuth();
 
    if (!currentUser) return fallback;
