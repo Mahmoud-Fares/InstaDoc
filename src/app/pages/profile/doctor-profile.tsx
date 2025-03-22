@@ -9,7 +9,7 @@ import PersonalInformation from '@/app/pages/profile/components/personal-info';
 
 export default function DoctorProfile({ doctor }: { doctor: Doctor }) {
    return (
-      <Container className='grid gap-6 md:grid-cols-3'>
+      <Container className='grid gap-6 py-5 md:grid-cols-3'>
          <PersonalInformation profile={doctor} />
 
          <DoctorProfessionalInformation

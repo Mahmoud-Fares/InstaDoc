@@ -16,7 +16,7 @@ export default function ProfilePage() {
    const { slug } = useParams<{ slug?: string }>();
    const { currentUser } = useAuth();
 
-   if (!slug) return <Navigate to={`/profile/${currentUser!.slug}`} />;
+   if (!slug) return <Navigate to={`/profile/${currentUser!.slug}`} replace />;
 
    const profileUser = getUserBySlug(slug);
 
