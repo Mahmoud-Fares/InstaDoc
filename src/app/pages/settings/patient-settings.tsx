@@ -1,3 +1,5 @@
+import { useSearchParams } from 'react-router-dom';
+
 import Container from '@/shared/components/container';
 import {
    Tabs,
@@ -30,11 +32,28 @@ const PATIENT_SETTINGS_TABS = [
 ];
 
 export default function PatientSettings() {
+   const [searchParams, setSearchParams] = useSearchParams();
+   const activeTab = searchParams.get('active-tab') || 'personal';
+
+   const handleTabChange = (value: string) => {
+      setSearchParams(
+         (params) => {
+            params.set('active-tab', value);
+            return params;
+         },
+         { replace: true }
+      );
+   };
+
    return (
       <Container className='py-10'>
          <h1 className='mb-6 text-3xl font-bold'>Settings</h1>
 
-         <Tabs defaultValue='personal' className='space-y-6'>
+         <Tabs
+            defaultValue={activeTab}
+            className='space-y-6'
+            onValueChange={handleTabChange}
+         >
             <TabsList className='flex h-fit w-fit flex-wrap justify-start gap-2 p-2'>
                {PATIENT_SETTINGS_TABS.map((tab) => (
                   <TabsTrigger key={tab.value} value={tab.value}>
