@@ -1,33 +1,14 @@
-import { useEffect, useState } from 'react';
-
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
 
 import { Toggle } from '@/shared/components/ui/toggle';
+import { useTheme } from '@/shared/hooks/ui/use-theme';
+import { cn } from '@/shared/lib/utils';
 
-export function ThemeToggler() {
+export function ThemeToggler({ className }: { className?: string }) {
    const { theme, setTheme } = useTheme();
-   const [mounted, setMounted] = useState(false);
-
-   useEffect(() => {
-      setMounted(true);
-   }, []);
-
-   if (!mounted) {
-      return (
-         <Toggle variant='outline' className='group size-9'>
-            <Sun
-               size={16}
-               strokeWidth={2}
-               className='absolute shrink-0'
-               aria-hidden='true'
-            />
-         </Toggle>
-      );
-   }
 
    return (
-      <div>
+      <div className={cn(className)}>
          <Toggle
             variant='outline'
             className='group size-9'
