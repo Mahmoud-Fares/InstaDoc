@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+import Spinner from '@/shared/components/spinner';
 import { Button } from '@/shared/components/ui/button';
 import {
    Form,
@@ -93,7 +94,7 @@ export function LoginForm() {
                />
 
                <Button type='submit' className='w-full' disabled={isLoading}>
-                  {isLoading ? 'Logging in...' : 'Login'}
+                  {isLoading ? <Spinner /> : 'Login'}
                </Button>
             </div>
          </form>
