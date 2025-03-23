@@ -1,6 +1,5 @@
 import EmptyState from '@/shared/components/empty-state';
-
-import { Doctor } from '@/features/doctor/types/doctor';
+import { Doctor } from '@/shared/types';
 
 export default function DoctorAbout({ doctor }: { doctor: Doctor }) {
    return doctor.bio ? (

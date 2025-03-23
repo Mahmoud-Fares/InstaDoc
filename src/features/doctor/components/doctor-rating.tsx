@@ -1,17 +1,24 @@
 import { Star } from 'lucide-react';
 
-import { Doctor } from '@/features/doctor/types/doctor';
+import { cn } from '@/shared/lib/utils';
+import { Doctor } from '@/shared/types';
 
 type DoctorRatingProps = {
    doctor: Doctor;
+   className?: string;
 };
 
-export default function DoctorRating({ doctor }: DoctorRatingProps) {
+export default function DoctorRating({ doctor, className }: DoctorRatingProps) {
    return (
-      <div className='flex items-center'>
-         <Star className='mr-2 h-4 w-4 text-yellow-500' />
-         <span>
-            {doctor.averageRating} ({doctor.reviewCount} reviews)
+      <div className={cn('flex flex-wrap items-center gap-2', className)}>
+         <span className='flex items-center gap-1 text-sm font-medium'>
+            <Star className='h-4 w-4 fill-yellow-500 text-yellow-500' />
+
+            {doctor.averageRating?.toFixed(1) || '0.0'}
+         </span>
+
+         <span className='text-xs text-muted-foreground'>
+            ({doctor.reviewCount || 0} reviews)
          </span>
       </div>
    );

@@ -1,8 +1,11 @@
 import { toast } from 'sonner';
 
+import Container from '@/shared/components/container';
 import { Button } from '@/shared/components/ui/button';
 
 import { useAuth } from '@/features/auth';
+import { DOCTORS } from '@/features/doctor';
+import { DoctorCard } from '@/features/doctor/components/card';
 
 export default function Home() {
    const { currentUser, isAuthenticated } = useAuth();
@@ -12,6 +15,10 @@ export default function Home() {
          <h1 className='text-3xl font-bold underline'>
             {isAuthenticated ? `Hey ${currentUser?.name}!👋` : 'Hey there!👋'}
          </h1>
+
+         <Container>
+            <DoctorCard doctor={DOCTORS[0]} />
+         </Container>
 
          <Button
             onClick={() => {

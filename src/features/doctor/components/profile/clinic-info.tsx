@@ -7,10 +7,11 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+import { Doctor } from '@/shared/types';
 
+import { ViewToCurrentUser } from '@/features/auth';
 import UpdateClinicButton from '@/features/doctor/components/buttons/update-clinic-btn';
 import ClinicInfoDetails from '@/features/doctor/components/profile/clinic/clinic-info-details';
-import { Doctor } from '@/features/doctor/types/doctor';
 
 type ClinicInformationProps = {
    doctor: Doctor;
@@ -30,9 +31,11 @@ export default function ClinicInformation({ doctor }: ClinicInformationProps) {
             <ClinicInfoDetails doctor={doctor} />
          </CardContent>
 
-         <CardFooter>
-            <UpdateClinicButton doctor={doctor} />
-         </CardFooter>
+         <ViewToCurrentUser profile={doctor}>
+            <CardFooter>
+               <UpdateClinicButton />
+            </CardFooter>
+         </ViewToCurrentUser>
       </Card>
    );
 }

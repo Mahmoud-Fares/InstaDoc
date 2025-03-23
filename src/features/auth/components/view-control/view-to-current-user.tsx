@@ -1,4 +1,6 @@
-import { AuthUser, useAuth } from '@/features/auth';
+import { AuthUser } from '@/shared/types';
+
+import { useAuth } from '@/features/auth';
 
 type ViewToCurrentUserProps = {
    profile: AuthUser;

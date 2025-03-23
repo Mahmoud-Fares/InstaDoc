@@ -1,7 +1,6 @@
 import EmptyState from '@/shared/components/empty-state';
 import { Badge } from '@/shared/components/ui/badge';
-
-import { Doctor } from '@/features/doctor/types/doctor';
+import { Doctor } from '@/shared/types';
 
 type DoctorQualificationsProps = {
    doctor: Doctor;

@@ -1,4 +1,4 @@
-import { Patient } from '@/features/patient/types/patient';
+import { Patient } from '@/shared/types';
 
 export const PATIENTS: Patient[] = [
    {

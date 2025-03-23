@@ -12,8 +12,7 @@ import {
    TabsTrigger,
 } from '@/shared/components/ui/tabs';
 import { cn } from '@/shared/lib/utils';
-
-import { Doctor } from '@/features/doctor/types/doctor';
+import { Doctor } from '@/shared/types';
 
 import DoctorAbout from './professional-info/doctor-about';
 import DoctorEducation from './professional-info/doctor-education';

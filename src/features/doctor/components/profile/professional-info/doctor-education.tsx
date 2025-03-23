@@ -1,8 +1,7 @@
 import { GraduationCap } from 'lucide-react';
 
 import EmptyState from '@/shared/components/empty-state';
-
-import { Doctor } from '@/features/doctor/types/doctor';
+import { Doctor } from '@/shared/types';
 
 export default function DoctorEducation({ doctor }: { doctor: Doctor }) {
    return doctor.education && doctor.education.length > 0 ? (

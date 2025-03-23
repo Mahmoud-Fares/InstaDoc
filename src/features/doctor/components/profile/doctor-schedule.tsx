@@ -10,10 +10,11 @@ import {
    CardTitle,
 } from '@/shared/components/ui/card';
 import { cn } from '@/shared/lib/utils';
+import { Doctor, Schedule } from '@/shared/types/doctor';
 
+import { ViewToCurrentUser } from '@/features/auth';
 import UpdateAvailabilityButton from '@/features/doctor/components/buttons/update-availability';
 import ScheduleDetails from '@/features/doctor/components/profile/schedule/schedule-details';
-import { Doctor, Schedule } from '@/features/doctor/types/doctor';
 
 type DoctorScheduleProps = {
    doctor: Doctor;
@@ -44,9 +45,11 @@ export default function DoctorSchedule({
             )}
          </CardContent>
 
-         <CardFooter>
-            <UpdateAvailabilityButton doctor={doctor} />
-         </CardFooter>
+         <ViewToCurrentUser profile={doctor}>
+            <CardFooter>
+               <UpdateAvailabilityButton />
+            </CardFooter>
+         </ViewToCurrentUser>
       </Card>
    );
 }

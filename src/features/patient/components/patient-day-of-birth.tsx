@@ -1,6 +1,6 @@
 import { Calendar } from 'lucide-react';
 
-import { Patient } from '@/features/patient/types/patient';
+import { Patient } from '@/shared/types';
 
 type PatientDayOfBirthProps = {
    patient: Patient;

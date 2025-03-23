@@ -1,9 +1,9 @@
+import ProfileAvatar from '@/shared/components/profile-avatar';
 import { Button } from '@/shared/components/ui/button';
 import { DropdownMenuTrigger } from '@/shared/components/ui/dropdown-menu';
+import { AuthUser } from '@/shared/types';
 
-import { AuthUser, useAuth } from '@/features/auth';
-
-import ProfileAvatar from '@/app/pages/profile/components/profile-avatar';
+import { useAuth } from '@/features/auth';
 
 export function UserDropdownMenuTrigger() {
    const { currentUser } = useAuth();

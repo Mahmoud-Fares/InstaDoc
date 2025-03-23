@@ -11,10 +11,10 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+import { Patient } from '@/shared/types';
 
 import { getPatientMedicalHistory } from '@/features/appointment';
 import { ViewToCurrentUser } from '@/features/auth';
-import { Patient } from '@/features/patient/types/patient';
 
 import MedicalHistoryDetails from './medical-history/details';
 
@@ -47,8 +47,8 @@ export default function MedicalHistory({ patient }: MedicalHistoryProps) {
             )}
          </CardContent>
 
-         <CardFooter>
-            <ViewToCurrentUser profile={patient}>
+         <ViewToCurrentUser profile={patient}>
+            <CardFooter>
                <Button
                   variant='outline'
                   className='w-full'
@@ -56,8 +56,8 @@ export default function MedicalHistory({ patient }: MedicalHistoryProps) {
                >
                   View All Medical Records
                </Button>
-            </ViewToCurrentUser>
-         </CardFooter>
+            </CardFooter>
+         </ViewToCurrentUser>
       </Card>
    );
 }

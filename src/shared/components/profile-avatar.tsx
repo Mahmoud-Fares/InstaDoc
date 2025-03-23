@@ -4,8 +4,7 @@ import {
    AvatarImage,
 } from '@/shared/components/ui/avatar';
 import { cn } from '@/shared/lib/utils';
-
-import { AuthUser } from '@/features/auth';
+import { AuthUser } from '@/shared/types';
 
 type ProfileAvatarProps = {
    profile: AuthUser;

@@ -1,6 +1,6 @@
 import Container from '@/shared/components/container';
+import { Patient } from '@/shared/types';
 
-import { Patient } from '@/features/patient';
 import EmergencyContact from '@/features/patient/components/profile/emergency-contact';
 import MedicalHistory from '@/features/patient/components/profile/medical-history';
 

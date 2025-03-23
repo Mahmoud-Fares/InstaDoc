@@ -4,11 +4,10 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import { wait } from '@/shared/lib/utils';
+import { AuthUser } from '@/shared/types';
 
-import { DOCTORS, Doctor } from '@/features/doctor';
-import { PATIENTS, Patient } from '@/features/patient';
-
-export type AuthUser = Patient | Doctor;
+import { DOCTORS } from '@/features/doctor';
+import { PATIENTS } from '@/features/patient';
 
 export type LoginProps = {
    email: string;

@@ -1,4 +1,4 @@
-import { TimeSlot } from '@/features/doctor/types/doctor';
+import { TimeSlot } from '@/shared/types/doctor';
 
 type DayScheduleProps = {
    day: string;

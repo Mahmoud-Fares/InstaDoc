@@ -1,6 +1,6 @@
 import { Mail, Phone } from 'lucide-react';
 
-import { AuthUser } from '@/features/auth';
+import { AuthUser } from '@/shared/types';
 
 export default function ContactInformation({ profile }: { profile: AuthUser }) {
    return (

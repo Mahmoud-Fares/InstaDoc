@@ -1,6 +1,6 @@
 import Container from '@/shared/components/container';
+import { Doctor } from '@/shared/types';
 
-import { Doctor } from '@/features/doctor';
 import ClinicInformation from '@/features/doctor/components/profile/clinic-info';
 import DoctorProfessionalInformation from '@/features/doctor/components/profile/doctor-professional-info';
 import DoctorSchedule from '@/features/doctor/components/profile/doctor-schedule';

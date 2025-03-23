@@ -1,6 +1,6 @@
-import { AuthUser, useAuthStore } from '@/features/auth/store/auth-store';
-import { Doctor } from '@/features/doctor';
-import { Patient } from '@/features/patient';
+import { AuthUser, Doctor, Patient } from '@/shared/types';
+
+import { useAuthStore } from '@/features/auth/store/auth-store';
 
 // * note: this Omit<AuthUser, 'password'> is used to handle using these functions with the current user
 // * in the future may we remove it because the users and the current one both will be the same type (with no password) coming from backend

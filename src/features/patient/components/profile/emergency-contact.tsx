@@ -8,8 +8,9 @@ import {
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
+import { Patient } from '@/shared/types';
 
-import { Patient } from '@/features/patient';
+import { ViewToCurrentUser } from '@/features/auth';
 
 import EmergencyContactDetails from './emergency/contact-details';
 import UpdateEmergencyContactButton from './emergency/update-emergency-button';
@@ -36,9 +37,11 @@ export default function EmergencyContact({ patient }: EmergencyContactProps) {
             )}
          </CardContent>
 
-         <CardFooter>
-            <UpdateEmergencyContactButton patient={patient} />
-         </CardFooter>
+         <ViewToCurrentUser profile={patient}>
+            <CardFooter>
+               <UpdateEmergencyContactButton />
+            </CardFooter>
+         </ViewToCurrentUser>
       </Card>
    );
 }

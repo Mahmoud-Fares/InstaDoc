@@ -13,8 +13,7 @@ import {
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
 import { Separator } from '@/shared/components/ui/separator';
-
-import { DayOfWeek, Doctor } from '@/features/doctor/types/doctor';
+import { DayOfWeek, Doctor } from '@/shared/types/doctor';
 
 type UpdateAvailabilityProps = {
    currentUser: Doctor;

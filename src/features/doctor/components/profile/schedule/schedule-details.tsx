@@ -1,5 +1,6 @@
+import { Schedule } from '@/shared/types/doctor';
+
 import DaySchedule from '@/features/doctor/components/profile/schedule/day-schedule';
-import { Schedule } from '@/features/doctor/types/doctor';
 
 export default function ScheduleDetails({ schedule }: { schedule: Schedule }) {
    return (

@@ -1,4 +1,4 @@
-import { User } from '@/shared/types/user';
+import { User } from '@/shared/types';
 
 // no patient data from the backend so far
 export type Patient = User & {

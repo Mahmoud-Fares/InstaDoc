@@ -1,4 +1,5 @@
-import { Doctor } from '@/features/doctor/types/doctor';
+import EmptyState from '@/shared/components/empty-state';
+import { Doctor } from '@/shared/types';
 
 export default function ClinicInfoDetails({ doctor }: { doctor: Doctor }) {
    return doctor.clinicInfo ? (
@@ -14,6 +15,6 @@ export default function ClinicInfoDetails({ doctor }: { doctor: Doctor }) {
          </p>
       </div>
    ) : (
-      <p className='text-muted-foreground'>No Clinic information recorded</p>
+      <EmptyState message='No Clinic information recorded' />
    );
 }

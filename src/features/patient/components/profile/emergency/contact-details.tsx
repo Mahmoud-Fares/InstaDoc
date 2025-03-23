@@ -1,4 +1,4 @@
-import { Patient } from '@/features/patient';
+import { Patient } from '@/shared/types';
 
 type EmergencyContactDetailsProps = {
    patient: Patient;

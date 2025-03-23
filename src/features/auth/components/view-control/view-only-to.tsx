@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { UserRole } from '@/shared/types/user';
+import { UserRole } from '@/shared/types';
 
 import { useAuth } from '@/features/auth';
 
