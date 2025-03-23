@@ -34,7 +34,7 @@ function AuthImage({ className }: { className?: string }) {
 
 function AuthFormWrapper({ className }: { className?: string }) {
    return (
-      <div className={cn('p-8', className)}>
+      <div className={cn('lg:p-8', className)}>
          <div className='w-full max-w-md xl:max-w-screen-md'>
             <Outlet />
          </div>

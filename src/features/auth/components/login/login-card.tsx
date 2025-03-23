@@ -13,7 +13,7 @@ import { SocialAuth } from '@/features/auth/components/social-auth';
 
 export default function LoginCard() {
    return (
-      <div className='flex h-full min-h-[50vh] w-full flex-col items-center justify-center px-4'>
+      <div className='flex h-full min-h-[50vh] w-full flex-col items-center justify-center'>
          <Card className='w-full'>
             <CardHeader>
                {/* todo: add logo */}
