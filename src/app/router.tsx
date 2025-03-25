@@ -18,6 +18,7 @@ const UpdateAvailability = lazy(
    () => import('@/app/pages/settings/updata-availability')
 );
 const FindDoctor = lazy(() => import('@/app/pages/find-doctor'));
+const BookAppointment = lazy(() => import('@/app/pages/book-appointment'));
 
 const NotFound = lazy(() => import('@/app/pages/not-found'));
 
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
          {
             path: 'find-doctor',
             element: <FindDoctor />,
+         },
+         {
+            path: 'book-appointment',
+            element: <BookAppointment />,
          },
       ],
    },
