@@ -10,7 +10,7 @@ export function ThemeToggler({ className }: { className?: string }) {
    return (
       <div className={cn(className)}>
          <Toggle
-            variant='outline'
+            variant='ghost'
             className='group size-9'
             onPressedChange={() =>
                setTheme(theme === 'dark' ? 'light' : 'dark')
