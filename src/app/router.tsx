@@ -12,8 +12,8 @@ const LoginPage = lazy(() => import('@/app/pages/auth/login'));
 const SignUpPage = lazy(() => import('@/app/pages/auth/signup'));
 
 const Home = lazy(() => import('@/app/pages/home'));
-const Profile = lazy(() => import('@/app/pages/profile/profile-page'));
-const Settings = lazy(() => import('@/app/pages/settings/settings-page'));
+const Profile = lazy(() => import('@/app/pages/profile'));
+const Settings = lazy(() => import('@/app/pages/settings'));
 const UpdateAvailability = lazy(
    () => import('@/app/pages/settings/updata-availability')
 );
