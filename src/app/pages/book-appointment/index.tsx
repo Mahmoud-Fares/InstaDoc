@@ -2,10 +2,9 @@ import { useSearchParams } from 'react-router-dom';
 
 import Container from '@/shared/components/container';
 
+import { BookingInfo } from '@/features/appointment/components/book-appointment/booking-info';
+import { DoctorInfo } from '@/features/appointment/components/book-appointment/doctor-info';
 import { DOCTORS } from '@/features/doctor';
-
-import { BookingInfo } from './booking-info';
-import { DoctorInfo } from './doctor-info';
 
 export default function BookAppointment() {
    const [searchParams] = useSearchParams();
