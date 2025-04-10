@@ -4,7 +4,7 @@ export function SignupFooter() {
    return (
       <div className='text-center text-sm'>
          Already have an account?{' '}
-         <Link to='/login' className='underline'>
+         <Link to='/login' className='underline' viewTransition>
             Login
          </Link>
       </div>

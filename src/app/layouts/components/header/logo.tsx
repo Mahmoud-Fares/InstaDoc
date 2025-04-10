@@ -5,6 +5,7 @@ export default function Logo() {
       <Link
          to={'/'}
          className='flex items-center duration-300 hover:text-primary'
+         viewTransition
       >
          <span className='text-xl font-bold'>InstaDoc</span>
       </Link>

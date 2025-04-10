@@ -25,7 +25,11 @@ export default function DoctorScheduleSettings() {
                You can update your availability schedule to let patients know
                when you're available for appointments.
             </p>
-            <Button onClick={() => navigate('/update-availability')}>
+            <Button
+               onClick={() =>
+                  navigate('/update-availability', { viewTransition: true })
+               }
+            >
                Update Availability
             </Button>
          </CardContent>

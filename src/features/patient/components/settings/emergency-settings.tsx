@@ -63,7 +63,11 @@ export default function EmergencySettings() {
             <CardFooter className='flex justify-end space-x-2'>
                <Button
                   variant='outline'
-                  onClick={() => navigate(`/profile/${currentUser.slug}`)}
+                  onClick={() =>
+                     navigate(`/profile/${currentUser.slug}`, {
+                        viewTransition: true,
+                     })
+                  }
                >
                   Cancel
                </Button>

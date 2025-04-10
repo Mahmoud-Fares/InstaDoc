@@ -26,3 +26,4 @@ dist-ssr
 
 # npm config vm fix (for my sandbox)
 .npmrc
+.vercel

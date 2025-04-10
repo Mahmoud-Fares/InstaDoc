@@ -10,7 +10,9 @@ export default function UpdateClinicButton() {
          variant='outline'
          size='sm'
          className='w-full'
-         onClick={() => navigate('/settings?active-tab=clinic')}
+         onClick={() =>
+            navigate('/settings?active-tab=clinic', { viewTransition: true })
+         }
       >
          Update Clinic Information
       </Button>

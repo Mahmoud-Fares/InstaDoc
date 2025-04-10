@@ -26,7 +26,11 @@ export default function ErrorBoundary() {
                   Refresh
                </Button>
 
-               <Button onClick={() => navigate('/', { replace: true })}>
+               <Button
+                  onClick={() =>
+                     navigate('/', { replace: true, viewTransition: true })
+                  }
+               >
                   Go Home
                </Button>
             </div>

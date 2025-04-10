@@ -9,7 +9,9 @@ export default function UpdateAvailabilityButton() {
       <Button
          variant='outline'
          className='w-full'
-         onClick={() => navigate('/update-availability')}
+         onClick={() =>
+            navigate('/update-availability', { viewTransition: true })
+         }
       >
          Update Availability
       </Button>

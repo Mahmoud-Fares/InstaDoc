@@ -10,7 +10,9 @@ export default function UpdateEmergencyContactButton() {
          variant='outline'
          size='sm'
          className='w-full'
-         onClick={() => navigate('/settings?active-tab=emergency')}
+         onClick={() =>
+            navigate('/settings?active-tab=emergency', { viewTransition: true })
+         }
       >
          Update Emergency Contact
       </Button>

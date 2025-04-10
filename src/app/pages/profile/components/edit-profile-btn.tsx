@@ -16,7 +16,7 @@ export default function EditProfileButton({
       <Button
          variant='outline'
          className={cn(className)}
-         onClick={() => navigate('/settings')}
+         onClick={() => navigate('/settings', { viewTransition: true })}
       >
          Edit Profile
       </Button>

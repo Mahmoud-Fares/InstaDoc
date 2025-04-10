@@ -50,7 +50,7 @@ export const useAuthStore = create<AuthState>()(
 
                toast.success('Successfully logged in!');
 
-               navigate('/dashboard');
+               navigate('/dashboard', { viewTransition: true });
             } else {
                set({ isLoading: false });
 

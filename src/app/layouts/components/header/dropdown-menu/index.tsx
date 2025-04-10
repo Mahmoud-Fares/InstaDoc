@@ -22,12 +22,12 @@ export function UserDropdownMenu() {
          {
             label: 'Profile',
             icon: User,
-            action: () => navigate('/profile'),
+            action: () => navigate('/profile', { viewTransition: true }),
          },
          {
             label: 'Settings',
             icon: Settings,
-            action: () => navigate('/settings'),
+            action: () => navigate('/settings', { viewTransition: true }),
          },
       ],
       [

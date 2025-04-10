@@ -1,4 +1,5 @@
 import { Moon, Sun } from 'lucide-react';
+import { flushSync } from 'react-dom';
 
 import { Toggle } from '@/shared/components/ui/toggle';
 import { useTheme } from '@/shared/hooks/ui/use-theme';
@@ -7,14 +8,18 @@ import { cn } from '@/shared/lib/utils';
 export function ThemeToggler({ className }: { className?: string }) {
    const { theme, setTheme } = useTheme();
 
+   const handleSmoothThemeChange = () => {
+      document.startViewTransition(() =>
+         flushSync(() => setTheme(theme === 'dark' ? 'light' : 'dark'))
+      );
+   };
+
    return (
       <div className={cn(className)}>
          <Toggle
             variant='ghost'
             className='group size-9'
-            onPressedChange={() =>
-               setTheme(theme === 'dark' ? 'light' : 'dark')
-            }
+            onPressedChange={handleSmoothThemeChange}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             pressed={theme === 'dark'}
          >

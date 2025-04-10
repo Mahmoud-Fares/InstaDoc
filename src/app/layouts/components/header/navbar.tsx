@@ -30,6 +30,7 @@ export const Navbar = ({ className }: { className?: string }) => (
                         isActive && 'text-primary'
                      )
                   }
+                  viewTransition
                >
                   {link.label}
                </NavLink>

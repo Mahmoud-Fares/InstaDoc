@@ -30,7 +30,13 @@ export default function Header() {
                </SignedIn>
 
                <SignedOut>
-                  <Button onClick={() => navigate('/login')}>Login</Button>
+                  <Button
+                     onClick={() =>
+                        navigate('/login', { viewTransition: true })
+                     }
+                  >
+                     Login
+                  </Button>
                </SignedOut>
             </div>
          </Container>

@@ -15,7 +15,11 @@ export default function NotFound() {
                The page you are looking for does not exist
             </p>
             <div className='flex justify-center gap-4 pt-4'>
-               <Button onClick={() => navigate('/', { replace: true })}>
+               <Button
+                  onClick={() =>
+                     navigate('/', { replace: true, viewTransition: true })
+                  }
+               >
                   Go Home
                </Button>
             </div>

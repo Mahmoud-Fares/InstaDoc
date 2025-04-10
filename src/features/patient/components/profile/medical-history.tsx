@@ -52,7 +52,9 @@ export default function MedicalHistory({ patient }: MedicalHistoryProps) {
                <Button
                   variant='outline'
                   className='w-full'
-                  onClick={() => navigate('/appointments')}
+                  onClick={() =>
+                     navigate('/appointments', { viewTransition: true })
+                  }
                >
                   View All Medical Records
                </Button>
