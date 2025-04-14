@@ -26,10 +26,10 @@ export type Doctor = User & {
    specialties: string[];
    qualifications: string[]; // missing
    education: string[]; // missing
-   experience: string[]; // missing
+   experience: string[]; // Instead of only experience years, we should have a list of experience to handle multiple specializations.
    clinicInfo: ClinicInfo; // missing
    fees: number;
    averageRating: number; // should we add a rating system?
    reviewCount: number; // should we add a review system?
-   schedule: Schedule;
+   schedule: Schedule; // Rename the appointments into schedule.
 };

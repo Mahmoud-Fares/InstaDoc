@@ -3,7 +3,7 @@ export type UserRole = 'patient' | 'doctor';
 export type User = {
    id: string;
    name: string;
-   slug: string;
+   slug: string; // missing
    email: string;
    password: string;
    avatar?: string; // missing

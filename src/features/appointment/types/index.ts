@@ -2,7 +2,7 @@ type AppointmentStatus =
    | 'pending'
    | 'scheduled'
    | 'rescheduled'
-   | 'completed'
+   | 'served'
    | 'cancelled'
    | 'missed';
 

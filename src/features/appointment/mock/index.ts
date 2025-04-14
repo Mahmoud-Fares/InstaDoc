@@ -51,7 +51,7 @@ export const APPOINTMENTS: Appointment[] = [
       duration: 45,
       type: 'consultation',
       reason: 'Sleep disorder evaluation',
-      status: 'completed',
+      status: 'served',
    },
    {
       id: 'appt6',

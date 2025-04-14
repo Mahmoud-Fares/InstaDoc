@@ -24,7 +24,7 @@ export default function MedicalHistoryCard({
             <Badge
                className='ml-2'
                variant={
-                  appointment.status === 'completed' ? 'default' : 'destructive'
+                  appointment.status === 'served' ? 'default' : 'destructive'
                }
             >
                {appointment.status.charAt(0).toUpperCase() +
