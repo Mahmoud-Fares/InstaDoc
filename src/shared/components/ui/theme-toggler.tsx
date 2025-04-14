@@ -9,9 +9,16 @@ export function ThemeToggler({ className }: { className?: string }) {
    const { theme, setTheme } = useTheme();
 
    const handleSmoothThemeChange = () => {
-      document.startViewTransition(() =>
-         flushSync(() => setTheme(theme === 'dark' ? 'light' : 'dark'))
-      );
+      const root = document.documentElement;
+      root.style.viewTransitionName = 'theme-transition';
+
+      document
+         .startViewTransition(() =>
+            flushSync(() => setTheme(theme === 'dark' ? 'light' : 'dark'))
+         )
+         .finished.finally(() => {
+            root.style.viewTransitionName = '';
+         });
    };
 
    return (
