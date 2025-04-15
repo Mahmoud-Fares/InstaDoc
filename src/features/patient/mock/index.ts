@@ -15,7 +15,7 @@ export const PATIENTS: Patient[] = [
       insuranceProvider: 'Blue Cross Blue Shield',
       insuranceNumber: 'BCBS12345678',
       emergencyContact: {
-         name: 'Mary Doe',
+         name: 'John Doe',
          relationship: 'Spouse',
          phone: '+201012345688',
       },
