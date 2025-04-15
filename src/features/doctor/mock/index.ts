@@ -7,7 +7,7 @@ export const DOCTORS: Doctor[] = [
       password: 'password',
       name: 'Dr. Williams',
       slug: 'dr-williams',
-      phone: '(555) 789-0123',
+      phone: '+201234567890',
       role: 'doctor',
       dateOfBirth: '1970-03-10',
       specialties: ['Cardiology', 'Internal Medicine'],
@@ -24,7 +24,7 @@ export const DOCTORS: Doctor[] = [
       clinicInfo: {
          name: 'Heart Health Associates',
          address: '123 Medical Pkwy, Boston, MA 02215',
-         phone: '(555) 789-0123',
+         phone: '+201234567890',
       },
       fees: 100,
       averageRating: 4.8,

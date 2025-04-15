@@ -1,26 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-
+import PersonalSettingsForm from '@/shared/components/forms/personal-settings';
 import ProfileAvatar from '@/shared/components/profile-avatar';
 import { Button } from '@/shared/components/ui/button';
 import {
    Card,
    CardContent,
    CardDescription,
-   CardFooter,
    CardHeader,
    CardTitle,
 } from '@/shared/components/ui/card';
-import { DatePicker } from '@/shared/components/ui/date-picker';
-import { Input } from '@/shared/components/ui/input';
-import { Label } from '@/shared/components/ui/label';
 import { Separator } from '@/shared/components/ui/separator';
-import { AuthUser, Patient } from '@/shared/types';
+import { AuthUser } from '@/shared/types';
 
-import { isPatient, useAuth } from '@/features/auth';
+import { useAuth } from '@/features/auth';
 
 export default function PersonalSettings() {
-   const navigate = useNavigate();
-
    const { currentUser } = useAuth();
 
    return (
@@ -52,71 +45,8 @@ export default function PersonalSettings() {
 
             <Separator />
 
-            <div className='grid gap-4 sm:grid-cols-2'>
-               <div className='space-y-2'>
-                  <Label htmlFor='name'>Full Name</Label>
-                  <Input
-                     id='name'
-                     value={currentUser?.name}
-                     placeholder='Dr. Jane Smith'
-                  />
-               </div>
-
-               <div className='space-y-2'>
-                  <Label htmlFor='email'>Email</Label>
-                  <Input
-                     id='email'
-                     type='email'
-                     value={currentUser?.email}
-                     placeholder='dr.smith@example.com'
-                  />
-               </div>
-
-               <div className='space-y-2'>
-                  <Label htmlFor='phone'>Phone Number</Label>
-                  <Input
-                     id='phone'
-                     value={currentUser?.phone}
-                     placeholder='(555) 123-4567'
-                  />
-               </div>
-
-               <div className='space-y-2'>
-                  <Label htmlFor='address'>Address</Label>
-                  <Input
-                     id='address'
-                     value={currentUser?.governorate}
-                     placeholder='123 Medical Pkwy, Boston, MA 02215'
-                  />
-               </div>
-
-               {isPatient(currentUser as Patient) && (
-                  <div className='space-y-2'>
-                     <Label htmlFor='birthdate'>Date of birth</Label>
-                     <DatePicker
-                        initialDate={
-                           new Date(currentUser?.dateOfBirth as string)
-                        }
-                     />
-                  </div>
-               )}
-            </div>
+            <PersonalSettingsForm currentUser={currentUser as AuthUser} />
          </CardContent>
-
-         <CardFooter className='flex justify-end space-x-2'>
-            <Button
-               variant='outline'
-               onClick={() =>
-                  navigate(`/profile/${currentUser?.slug}`, {
-                     viewTransition: true,
-                  })
-               }
-            >
-               Cancel
-            </Button>
-
-            <Button>Save Changes</Button>
-         </CardFooter>
       </Card>
    );
 }

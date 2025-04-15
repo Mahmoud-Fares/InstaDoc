@@ -17,8 +17,10 @@ export const PATIENTS: Patient[] = [
       emergencyContact: {
          name: 'Mary Doe',
          relationship: 'Spouse',
-         phone: '(555) 234-5678',
+         phone: '+201012345688',
       },
+      governorate: '123 Medical Pkwy, Boston, MA 02215',
+      phone: '+201012345678',
    },
    {
       id: 'p2',
