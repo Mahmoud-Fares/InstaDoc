@@ -2,24 +2,19 @@ import EmptyState from '@/shared/components/empty-state';
 import { DayOfWeek, TimeSlot } from '@/shared/types/doctor';
 
 import TimeSlotComponent from '@/features/doctor/components/settings/availability/time-slot';
+import { useSchedule } from '@/features/doctor/hooks/use-schedule';
 
 type TimeSlotsForDayProps = {
    timeSlots: TimeSlot[];
    day: DayOfWeek;
-   handleDeleteTimeSlot: (day: DayOfWeek, slot: TimeSlot) => void;
-   handleUpdateTimeSlot: (
-      day: DayOfWeek,
-      slot: TimeSlot,
-      newSlot: TimeSlot
-   ) => void;
 };
 
 export default function TimeSlotsForDay({
    timeSlots,
    day,
-   handleDeleteTimeSlot,
-   handleUpdateTimeSlot,
 }: TimeSlotsForDayProps) {
+   const { handleDeleteTimeSlot, handleUpdateTimeSlot } = useSchedule();
+
    if (timeSlots.length === 0)
       return (
          <EmptyState

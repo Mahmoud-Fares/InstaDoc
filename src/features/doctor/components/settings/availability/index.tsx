@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,18 +15,25 @@ import {
 
 import { useAuth } from '@/features/auth';
 import ScheduleForWeek from '@/features/doctor/components/settings/availability/schedule-for-week';
-import { useScheduleSettings } from '@/features/doctor/hooks/use-schedule-settings';
+import { useSchedule } from '@/features/doctor/hooks/use-schedule';
 
 export default function AvailabilitySettings() {
    const navigate = useNavigate();
+   const [isSaving, setIsSaving] = useState(false);
 
    const { currentUser } = useAuth();
-   const {
-      schedule,
-      handleAddTimeSlot,
-      handleDeleteTimeSlot,
-      handleUpdateTimeSlot,
-   } = useScheduleSettings();
+   const { saveSchedule } = useSchedule();
+
+   const handleSave = async () => {
+      setIsSaving(true);
+      try {
+         await saveSchedule();
+      } catch (error) {
+         console.error('Error saving schedule:', error);
+      } finally {
+         setIsSaving(false);
+      }
+   };
 
    return (
       <Card>
@@ -39,12 +48,7 @@ export default function AvailabilitySettings() {
          </CardHeader>
 
          <CardContent>
-            <ScheduleForWeek
-               schedule={schedule}
-               handleAddTimeSlot={handleAddTimeSlot}
-               handleDeleteTimeSlot={handleDeleteTimeSlot}
-               handleUpdateTimeSlot={handleUpdateTimeSlot}
-            />
+            <ScheduleForWeek />
          </CardContent>
 
          <CardFooter className='flex justify-end space-x-2'>
@@ -55,15 +59,12 @@ export default function AvailabilitySettings() {
                      viewTransition: true,
                   })
                }
+               disabled={isSaving}
             >
                Cancel
             </Button>
-            <Button
-               onClick={() => {
-                  console.log('save availability', schedule);
-               }}
-            >
-               Save Availability
+            <Button onClick={handleSave} disabled={isSaving}>
+               {isSaving ? 'Saving...' : 'Save Availability'}
             </Button>
          </CardFooter>
       </Card>

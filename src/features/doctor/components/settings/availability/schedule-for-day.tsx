@@ -1,29 +1,18 @@
 import { Plus } from 'lucide-react';
 
 import { Button } from '@/shared/components/ui/button';
-import { DayOfWeek, Schedule, TimeSlot } from '@/shared/types/doctor';
+import { DayOfWeek } from '@/shared/types/doctor';
 
 import TimeSlotsForDay from '@/features/doctor/components/settings/availability/time-slots-for-day';
+import { useSchedule } from '@/features/doctor/hooks/use-schedule';
 
 type ScheduleForDayProps = {
    day: DayOfWeek;
-   schedule: Schedule;
-   handleAddTimeSlot: (day: DayOfWeek) => void;
-   handleDeleteTimeSlot: (day: DayOfWeek, slot: TimeSlot) => void;
-   handleUpdateTimeSlot: (
-      day: DayOfWeek,
-      slot: TimeSlot,
-      newSlot: TimeSlot
-   ) => void;
 };
 
-export default function ScheduleForDay({
-   day,
-   schedule,
-   handleAddTimeSlot,
-   handleDeleteTimeSlot,
-   handleUpdateTimeSlot,
-}: ScheduleForDayProps) {
+export default function ScheduleForDay({ day }: ScheduleForDayProps) {
+   const { schedule, handleAddTimeSlot } = useSchedule();
+
    return (
       <div className='space-y-3'>
          <div className='flex items-center justify-between'>
@@ -39,12 +28,7 @@ export default function ScheduleForDay({
             </Button>
          </div>
 
-         <TimeSlotsForDay
-            timeSlots={schedule[day]}
-            day={day}
-            handleDeleteTimeSlot={handleDeleteTimeSlot}
-            handleUpdateTimeSlot={handleUpdateTimeSlot}
-         />
+         <TimeSlotsForDay day={day} timeSlots={schedule[day]} />
       </div>
    );
 }
