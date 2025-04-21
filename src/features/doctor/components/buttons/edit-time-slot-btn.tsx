@@ -1,16 +1,13 @@
 import { Edit } from 'lucide-react';
-import { z } from 'zod';
 
 import { Button } from '@/shared/components/ui/button';
 import { TimeSlot } from '@/shared/types/doctor';
 
 import TimeSlotSheetDrawer from '@/features/doctor/components/settings/availability/time-slot-sheet-drawer';
-import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
-import { convertStringToDate } from '@/features/doctor/utils/schedule';
 
 type EditTimeSlotBtnProps = {
    slot: TimeSlot;
-   updateTimeSlot: (slot: z.infer<typeof timeSlotFormSchema>) => void;
+   updateTimeSlot: (slot: TimeSlot) => void;
 };
 
 export default function EditTimeSlotBtn({
@@ -20,11 +17,7 @@ export default function EditTimeSlotBtn({
    return (
       <TimeSlotSheetDrawer
          event='edit'
-         initialValues={{
-            ...slot,
-            start: convertStringToDate(slot.start),
-            end: convertStringToDate(slot.end),
-         }}
+         initialValues={slot}
          onSubmit={updateTimeSlot}
       >
          <Button variant='ghost' size='icon' className='text-muted-foreground'>

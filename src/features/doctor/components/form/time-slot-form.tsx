@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import * as z from 'zod';
 
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -18,51 +17,51 @@ import { Input } from '@/shared/components/ui/input';
 import { Switch } from '@/shared/components/ui/switch';
 import { TimePicker } from '@/shared/components/ui/time-picker';
 import { cn } from '@/shared/lib/utils';
+import { TimeSlot } from '@/shared/types/doctor';
 
-import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
 import {
-   convertDateToString,
-   convertStringToDate,
+   scheduleSchemaType,
+   timeSlotFormSchema,
+} from '@/features/doctor/schema/schedule-schema';
+import {
+   convertScheduleSchemaToTimeSlot,
+   convertTimeSlotToScheduleSchema,
 } from '@/features/doctor/utils/schedule';
 
-type schemaType = z.infer<typeof timeSlotFormSchema>;
-
 type TimeSlotFormProps = {
-   initialValues?: schemaType;
-   onSubmit: (data: schemaType) => void;
+   initialValues?: TimeSlot;
+   onSubmit: (data: TimeSlot) => void;
    setOpen: (open: boolean) => void;
 };
 
 export default function TimeSlotForm({
    onSubmit,
    initialValues = {
-      start: convertStringToDate('09:00'),
-      end: convertStringToDate('12:00'),
+      start: '09:00',
+      end: '12:00',
       duration: 30,
       capacity: 1,
       isActive: false,
    },
    setOpen,
 }: TimeSlotFormProps) {
-   const form = useForm<schemaType>({
+   const form = useForm<scheduleSchemaType>({
       resolver: zodResolver(timeSlotFormSchema),
-      defaultValues: initialValues,
+      defaultValues: convertTimeSlotToScheduleSchema(initialValues),
    });
 
-   function handleSubmit(values: schemaType) {
-      const formattedValues = {
-         ...values,
-         start: convertDateToString(values.start),
-         end: convertDateToString(values.end),
-      } as const;
-
+   function handleSubmit(values: scheduleSchemaType) {
       try {
          console.log(values);
-         onSubmit(values);
+         onSubmit(convertScheduleSchemaToTimeSlot(values));
          toast(
             <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
                <code className='text-white'>
-                  {JSON.stringify(formattedValues, null, 2)}
+                  {JSON.stringify(
+                     convertScheduleSchemaToTimeSlot(values),
+                     null,
+                     2
+                  )}
                </code>
             </pre>
          );

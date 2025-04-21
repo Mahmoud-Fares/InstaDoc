@@ -7,3 +7,5 @@ export const timeSlotFormSchema = z.object({
    capacity: z.coerce.number().min(1),
    isActive: z.boolean(),
 });
+
+export type scheduleSchemaType = z.infer<typeof timeSlotFormSchema>;

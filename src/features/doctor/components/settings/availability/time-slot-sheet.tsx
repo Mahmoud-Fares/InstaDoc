@@ -1,5 +1,3 @@
-import * as z from 'zod';
-
 import {
    Sheet,
    SheetContent,
@@ -8,16 +6,16 @@ import {
    SheetTitle,
    SheetTrigger,
 } from '@/shared/components/ui/sheet';
+import { TimeSlot } from '@/shared/types/doctor';
 
 import TimeSlotForm from '@/features/doctor/components/form/time-slot-form';
-import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
 
 type TimeSlotSheetProps = {
    open: boolean;
    setOpen: (open: boolean) => void;
    children: React.ReactNode;
-   onSubmit: (data: z.infer<typeof timeSlotFormSchema>) => void;
-   initialValues?: z.infer<typeof timeSlotFormSchema>;
+   onSubmit: (data: TimeSlot) => void;
+   initialValues?: TimeSlot;
    event: 'add' | 'edit';
 };
 
@@ -30,6 +28,7 @@ export default function TimeSlotSheet({
    event,
 }: TimeSlotSheetProps) {
    const verb = event === 'edit' ? 'Editing' : 'Adding';
+
    return (
       <Sheet open={open} onOpenChange={setOpen}>
          <SheetTrigger asChild>{children}</SheetTrigger>

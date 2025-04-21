@@ -1,23 +1,21 @@
 import { useState } from 'react';
 
-import * as z from 'zod';
-
 import { useMediaQuery } from '@/shared/hooks/use-media-query';
+import { TimeSlot } from '@/shared/types/doctor';
 
 import TimeSlotDrawer from '@/features/doctor/components/settings/availability/time-slot-drawer';
 import TimeSlotSheet from '@/features/doctor/components/settings/availability/time-slot-sheet';
-import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
 
 type TimeSlotSheetDrawerProps = EditSheetDrawerProps | AddSheetDrawerProps;
 
 type AddSheetDrawerProps = SharedTypes & { event: 'add' };
 type EditSheetDrawerProps = SharedTypes & {
-   initialValues: z.infer<typeof timeSlotFormSchema>;
+   initialValues: TimeSlot;
    event: 'edit';
 };
 
 type SharedTypes = {
-   onSubmit: (values: z.infer<typeof timeSlotFormSchema>) => void;
+   onSubmit: (values: TimeSlot) => void;
    children: React.ReactNode;
 };
 

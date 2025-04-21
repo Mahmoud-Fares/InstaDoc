@@ -1,5 +1,3 @@
-import * as z from 'zod';
-
 import { Button } from '@/shared/components/ui/button';
 import {
    Drawer,
@@ -11,16 +9,16 @@ import {
    DrawerTitle,
    DrawerTrigger,
 } from '@/shared/components/ui/drawer';
+import { TimeSlot } from '@/shared/types/doctor';
 
 import TimeSlotForm from '@/features/doctor/components/form/time-slot-form';
-import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
 
 type TimeSlotDrawerProps = {
    open: boolean;
    setOpen: (open: boolean) => void;
    children: React.ReactNode;
-   onSubmit: (data: z.infer<typeof timeSlotFormSchema>) => void;
-   initialValues?: z.infer<typeof timeSlotFormSchema>;
+   onSubmit: (data: TimeSlot) => void;
+   initialValues?: TimeSlot;
    event: 'add' | 'edit';
 };
 
@@ -33,6 +31,7 @@ export default function TimeSlotDrawer({
    event,
 }: TimeSlotDrawerProps) {
    const verb = event === 'edit' ? 'Editing' : 'Adding';
+
    return (
       <Drawer open={open} onOpenChange={setOpen}>
          <DrawerTrigger asChild>{children}</DrawerTrigger>
