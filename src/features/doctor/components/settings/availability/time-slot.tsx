@@ -1,28 +1,19 @@
-import { useState } from 'react';
-
-import { Trash2 } from 'lucide-react';
+import { Edit, Trash2 } from 'lucide-react';
+import { z } from 'zod';
 
 import { Button } from '@/shared/components/ui/button';
+import { TimePicker } from '@/shared/components/ui/time-picker';
+import { cn } from '@/shared/lib/utils';
 import { TimeSlot } from '@/shared/types/doctor';
 
-import ScheduleTimeInput from '@/features/doctor/components/settings/availability/schedule-time-input';
+import TimeSlotSheetDrawer from '@/features/doctor/components/settings/availability/time-slot-sheet-drawer';
+import { timeSlotFormSchema } from '@/features/doctor/schema/schedule-schema';
+import { convertStringToDate } from '@/features/doctor/utils/schedule';
 
 type TimeSlotComponentProps = {
    slot: TimeSlot;
    deleteTimeSlot: () => void;
-   updateTimeSlot: (newSlot: TimeSlot) => void;
-};
-
-const convertToDate = (time: string) => {
-   const [hours, minutes] = time.split(':').map(Number);
-   return new Date(new Date().setHours(hours, minutes, 0, 0));
-};
-
-const formatTime = (date: Date) => {
-   const hours = date.getHours();
-   const minutes = date.getMinutes();
-   const roundedMinutes = Math.round(minutes / 5) * 5;
-   return `${hours}:${roundedMinutes}`;
+   updateTimeSlot: (slot: z.infer<typeof timeSlotFormSchema>) => void;
 };
 
 export default function TimeSlotComponent({
@@ -30,45 +21,80 @@ export default function TimeSlotComponent({
    deleteTimeSlot,
    updateTimeSlot,
 }: TimeSlotComponentProps) {
-   const [start, setStart] = useState<Date>(convertToDate(slot.start));
-   const [end, setEnd] = useState<Date>(convertToDate(slot.end));
-
    return (
-      <div className='flex items-end gap-3'>
-         <div className='grid flex-1 grid-cols-2 gap-3'>
-            <ScheduleTimeInput
-               label='Start Time'
-               date={start}
-               onChange={(date) => {
-                  setStart(date);
-                  updateTimeSlot({
-                     start: formatTime(date),
-                     end: formatTime(end),
-                  });
-               }}
-            />
+      <div
+         className={cn(
+            'flex items-end gap-3 rounded border p-3',
+            'md:rounded-none md:border-0 md:p-0 md:py-2'
+         )}
+      >
+         <div
+            className={cn(
+               'flex flex-1 flex-col gap-3',
+               'sm:grid sm:grid-cols-2 sm:items-center',
+               'md:grid-cols-4',
+               !slot.isActive && 'opacity-20'
+            )}
+         >
+            <div className='space-y-1'>
+               <span>Start Time</span>
+               <TimePicker
+                  value={convertStringToDate(slot.start)}
+                  className='pointer-events-none w-full'
+               />
+            </div>
 
-            <ScheduleTimeInput
-               label='End Time'
-               date={end}
-               onChange={(date) => {
-                  setEnd(date);
-                  updateTimeSlot({
-                     start: formatTime(start),
-                     end: formatTime(date),
-                  });
-               }}
-            />
+            <div className='space-y-1'>
+               <span>End Time</span>
+               <TimePicker
+                  value={convertStringToDate(slot.end)}
+                  className='pointer-events-none w-full'
+               />
+            </div>
+
+            <div className='space-y-1'>
+               <span>Duration</span>
+               <div className='flex items-center rounded-md border-2 border-input p-1 px-2'>
+                  {slot.duration}
+               </div>
+            </div>
+
+            <div className='space-y-1'>
+               <span>Capacity</span>
+               <div className='flex items-center rounded-md border-2 border-input p-1 px-2'>
+                  {slot.capacity}
+               </div>
+            </div>
          </div>
 
-         <Button
-            onClick={deleteTimeSlot}
-            variant='ghost'
-            size='icon'
-            className='mb-1 text-destructive hover:bg-destructive/20 hover:text-destructive'
-         >
-            <Trash2 className='h-4 w-4' />
-         </Button>
+         <div className='md:mb-1'>
+            <TimeSlotSheetDrawer
+               event='edit'
+               initialValues={{
+                  ...slot,
+                  start: convertStringToDate(slot.start),
+                  end: convertStringToDate(slot.end),
+               }}
+               onSubmit={updateTimeSlot}
+            >
+               <Button
+                  variant='ghost'
+                  size='icon'
+                  className='text-muted-foreground'
+               >
+                  <Edit />
+               </Button>
+            </TimeSlotSheetDrawer>
+
+            <Button
+               onClick={deleteTimeSlot}
+               variant='ghost'
+               size='icon'
+               className='text-destructive hover:bg-destructive/20 hover:text-destructive'
+            >
+               <Trash2 />
+            </Button>
+         </div>
       </div>
    );
 }

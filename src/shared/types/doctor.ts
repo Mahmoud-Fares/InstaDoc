@@ -12,6 +12,9 @@ export type DayOfWeek =
 export type TimeSlot = {
    start: string; // 24-hour format HH:MM
    end: string; // 24-hour format HH:MM
+   duration: number;
+   capacity: number;
+   isActive: boolean;
 };
 
 export type Schedule = Record<DayOfWeek, TimeSlot[]>;

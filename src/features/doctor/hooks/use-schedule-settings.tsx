@@ -1,23 +1,30 @@
 import { useState } from 'react';
 
 import { toast } from 'sonner';
+import { z } from 'zod';
 
 import { wait } from '@/shared/lib/utils';
 import { DayOfWeek, Schedule, TimeSlot } from '@/shared/types/doctor';
 
 import { isDoctor, useAuth } from '@/features/auth';
 
+import { timeSlotFormSchema } from '../schema/schedule-schema';
+import { convertDateToString } from '../utils/schedule';
+
 export type ScheduleContextType = {
    schedule: Schedule;
 
-   handleAddTimeSlot: (day: DayOfWeek) => void;
+   handleAddTimeSlot: (
+      day: DayOfWeek,
+      slot: z.infer<typeof timeSlotFormSchema>
+   ) => void;
    handleDeleteTimeSlot: (day: DayOfWeek, slot: TimeSlot) => void;
    handleUpdateTimeSlot: (
       day: DayOfWeek,
       slot: TimeSlot,
-      newSlot: TimeSlot
+      newSlot: z.infer<typeof timeSlotFormSchema>
    ) => void;
-   formatTime: (date: Date) => string;
+
    saveSchedule: () => Promise<void>;
 };
 
@@ -27,10 +34,20 @@ export const useScheduleSettings = (): ScheduleContextType => {
       isDoctor(currentUser!) ? currentUser.schedule : ({} as Schedule)
    );
 
-   const handleAddTimeSlot = (day: DayOfWeek) => {
+   const handleAddTimeSlot = (
+      day: DayOfWeek,
+      slot: z.infer<typeof timeSlotFormSchema>
+   ) => {
       setSchedule((prevSchedule) => ({
          ...prevSchedule,
-         [day]: [...prevSchedule[day], { start: '09:00', end: '17:00' }],
+         [day]: [
+            ...prevSchedule[day],
+            {
+               ...slot,
+               start: convertDateToString(slot.start),
+               end: convertDateToString(slot.end),
+            },
+         ],
       }));
    };
 
@@ -44,19 +61,20 @@ export const useScheduleSettings = (): ScheduleContextType => {
    const handleUpdateTimeSlot = (
       day: DayOfWeek,
       slot: TimeSlot,
-      newSlot: TimeSlot
+      newSlot: z.infer<typeof timeSlotFormSchema>
    ) => {
       setSchedule((prevSchedule) => ({
          ...prevSchedule,
-         [day]: prevSchedule[day].map((s) => (s === slot ? newSlot : s)),
+         [day]: prevSchedule[day].map((s) =>
+            s === slot
+               ? {
+                    ...newSlot,
+                    start: convertDateToString(newSlot.start),
+                    end: convertDateToString(newSlot.end),
+                 }
+               : s
+         ),
       }));
-   };
-
-   const formatTime = (date: Date) => {
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-      const roundedMinutes = Math.round(minutes / 5) * 5;
-      return `${hours}:${roundedMinutes}`;
    };
 
    const saveSchedule = async () => {
@@ -81,10 +99,11 @@ export const useScheduleSettings = (): ScheduleContextType => {
 
    return {
       schedule,
+
       handleAddTimeSlot,
       handleDeleteTimeSlot,
       handleUpdateTimeSlot,
-      formatTime,
+
       saveSchedule,
    };
 };
