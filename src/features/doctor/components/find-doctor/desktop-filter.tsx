@@ -1,26 +1,20 @@
-import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Label } from '@/shared/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
 import { cn } from '@/shared/lib/utils';
 
 type DesktopFilterProps = {
    specialties: { id: string; name: string }[];
-   availability: { id: string; name: string }[];
    className?: string;
 };
 
 export const DesktopFilter = ({
    specialties,
-   availability,
    className,
 }: DesktopFilterProps) => {
    const CHECKBOXES = [
       {
          label: 'Specialty',
          options: specialties,
-      },
-      {
-         label: 'Availability',
-         options: availability,
       },
    ];
 
@@ -30,7 +24,7 @@ export const DesktopFilter = ({
             <div key={checkbox.label}>
                <Label className='text-lg'>{checkbox.label}</Label>
 
-               <CheckboxGroup
+               <RadioItemsGroup
                   label={checkbox.label}
                   options={checkbox.options}
                />
@@ -40,24 +34,26 @@ export const DesktopFilter = ({
    );
 };
 
-type CheckboxGroupProps = {
+type RadioItemsGroupProps = {
    label: string;
    options: { id: string; name: string }[];
 };
 
-const CheckboxGroup = ({ label, options }: CheckboxGroupProps) => (
-   <div className='space-y-2'>
-      {options.map((option) => (
-         <div key={option.id} className='flex items-center gap-2'>
-            <Checkbox id={`${label}-${option.id}`} />
+const RadioItemsGroup = ({ label, options }: RadioItemsGroupProps) => {
+   return (
+      <RadioGroup>
+         {options.map((option) => (
+            <div key={option.id} className='flex items-center space-x-2'>
+               <RadioGroupItem value={option.id} id={`${label}-${option.id}`} />
 
-            <Label
-               htmlFor={`${label}-${option.id}`}
-               className='cursor-pointer text-sm'
-            >
-               {option.name}
-            </Label>
-         </div>
-      ))}
-   </div>
-);
+               <Label
+                  htmlFor={`${label}-${option.id}`}
+                  className='cursor-pointer text-sm'
+               >
+                  {option.name}
+               </Label>
+            </div>
+         ))}
+      </RadioGroup>
+   );
+};

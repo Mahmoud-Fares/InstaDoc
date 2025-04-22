@@ -1,4 +1,3 @@
-import { Button } from '@/shared/components/ui/button';
 import {
    Card,
    CardContent,
@@ -17,6 +16,7 @@ type SearchFilterProps = {
 };
 
 const SPECIALTIES = [
+   { id: '0', name: 'None' },
    { id: '1', name: 'Cardiology' },
    { id: '2', name: 'Dermatology' },
    { id: '3', name: 'Pediatrics' },
@@ -27,47 +27,33 @@ const SPECIALTIES = [
    { id: '8', name: 'Pediatrics' },
 ];
 
-const AVAILABILITY = [
-   { id: '1', name: 'Available Today' },
-   { id: '2', name: 'Available This Week' },
-   { id: '3', name: 'Virtual Visits' },
-];
-
 export const SearchFilter = ({ className }: SearchFilterProps) => {
    return (
-      <Card className={cn('top-20 h-fit lg:sticky', className)}>
-         <CardHeader className='pb-4 text-xl'>
+      <Card
+         className={cn(
+            'h-fit bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60',
+            className
+         )}
+      >
+         <CardHeader className='sr-only pb-4 text-xl'>
             <CardTitle>Filters</CardTitle>
          </CardHeader>
 
-         <CardContent>
-            <div className='space-y-6'>
-               <div>
+         <CardContent className='pt-6'>
+            <div className='grid grid-cols-2 items-center gap-6 sm:grid-cols-[1fr_auto] lg:grid-cols-1 lg:items-start'>
+               <div className='flex-1 space-y-3'>
                   <Label htmlFor='search' className='text-lg'>
                      Search
                   </Label>
-                  <Input
-                     id='search'
-                     placeholder='Search by name or specialty'
-                     className='pt-1'
-                  />
+                  <Input id='search' placeholder='Search by name' />
                </div>
 
-               <MobileFilter
-                  specialties={SPECIALTIES}
-                  availability={AVAILABILITY}
-                  className='lg:hidden'
-               />
+               <MobileFilter specialties={SPECIALTIES} className='lg:hidden' />
 
                <DesktopFilter
                   specialties={SPECIALTIES}
-                  availability={AVAILABILITY}
                   className='hidden lg:flex'
                />
-
-               <Button variant='outline' className='w-full'>
-                  Clear All Filters
-               </Button>
             </div>
          </CardContent>
       </Card>

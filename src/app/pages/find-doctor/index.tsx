@@ -25,7 +25,7 @@ const ResultGrid = () => {
 
    return (
       <div className='grid gap-6 lg:grid-cols-4'>
-         <SearchFilter />
+         <SearchFilter className='sticky top-2 z-40 lg:top-20' />
 
          <div className='space-y-6 lg:col-span-3'>
             <ResultHeader resultCount={doctors.length} />

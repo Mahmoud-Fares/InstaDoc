@@ -11,13 +11,12 @@ import { cn } from '@/shared/lib/utils';
 
 type MobileFilterProps = {
    specialties: { id: string; name: string }[];
-   availability: { id: string; name: string }[];
    className?: string;
 };
 
 export const MobileFilter = ({
    specialties,
-   availability,
+
    className,
 }: MobileFilterProps) => {
    const SELECTS = [
@@ -26,15 +25,10 @@ export const MobileFilter = ({
          options: specialties,
          placeholder: 'Select a specialty',
       },
-      {
-         label: 'Availability',
-         options: availability,
-         placeholder: 'Select a availability',
-      },
    ];
 
    return (
-      <div className={cn('grid grid-cols-2 gap-6 *:space-y-3', className)}>
+      <div className={cn('*:space-y-3', className)}>
          {SELECTS.map((select) => (
             <div key={select.label}>
                <Label>{select.label}</Label>
