@@ -61,8 +61,8 @@ export default function DoctorProfessionalInformation({
          </CardHeader>
 
          <CardContent>
-            <Tabs defaultValue='qualifications'>
-               <TabsList className='mb-4'>
+            <Tabs className='space-y-4' defaultValue='qualifications'>
+               <TabsList className='flex h-fit w-fit flex-wrap justify-start gap-2 p-2 *:flex-1'>
                   {tabs.map((tab) => (
                      <TabsTrigger key={tab.value} value={tab.value}>
                         {tab.label}

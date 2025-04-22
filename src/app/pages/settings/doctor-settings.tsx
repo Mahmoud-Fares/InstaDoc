@@ -66,7 +66,7 @@ export default function DoctorSettings() {
             className='space-y-6'
             onValueChange={handleTabChange}
          >
-            <TabsList className='flex h-fit w-fit flex-wrap justify-start gap-2 p-2'>
+            <TabsList className='flex h-fit w-fit flex-wrap justify-start gap-2 p-2 *:flex-1'>
                {DOCTOR_SETTINGS_TABS.map((tab) => (
                   <TabsTrigger key={tab.value} value={tab.value}>
                      {tab.label}
