@@ -6,7 +6,6 @@ import {
    ResultList,
    SearchFilter,
 } from '@/features/doctor/components/find-doctor';
-import { DOCTORS } from '@/features/doctor/mock';
 
 export default function FindDoctor() {
    return (
@@ -21,16 +20,14 @@ export default function FindDoctor() {
 }
 
 const ResultGrid = () => {
-   const doctors = DOCTORS;
-
    return (
       <div className='grid gap-6 lg:grid-cols-4'>
          <SearchFilter className='sticky top-2 z-40 lg:top-20' />
 
          <div className='space-y-6 lg:col-span-3'>
-            <ResultHeader resultCount={doctors.length} />
+            <ResultHeader />
 
-            <ResultList doctors={doctors} className='flex flex-col gap-6' />
+            <ResultList />
          </div>
       </div>
    );

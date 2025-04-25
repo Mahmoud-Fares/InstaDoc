@@ -9,16 +9,16 @@ import {
 } from '@/shared/components/ui/select';
 import { cn } from '@/shared/lib/utils';
 
+import { useFindDoctor } from '@/features/doctor/hooks/use-find-doctor';
+
 type MobileFilterProps = {
    specialties: { id: string; name: string }[];
    className?: string;
 };
 
-export const MobileFilter = ({
-   specialties,
+export const MobileFilter = ({ specialties, className }: MobileFilterProps) => {
+   const { filter, updateFilter } = useFindDoctor();
 
-   className,
-}: MobileFilterProps) => {
    const SELECTS = [
       {
          label: 'Specialty',
@@ -33,7 +33,7 @@ export const MobileFilter = ({
             <div key={select.label}>
                <Label>{select.label}</Label>
 
-               <Select>
+               <Select value={filter} onValueChange={updateFilter}>
                   <SelectTrigger className='gap-4'>
                      <SelectValue placeholder={select.placeholder} />
                   </SelectTrigger>
@@ -41,7 +41,7 @@ export const MobileFilter = ({
                   <SelectContent>
                      <SelectGroup>
                         {select.options.map((option) => (
-                           <SelectItem key={option.id} value={option.id}>
+                           <SelectItem key={option.id} value={option.name}>
                               {option.name}
                            </SelectItem>
                         ))}

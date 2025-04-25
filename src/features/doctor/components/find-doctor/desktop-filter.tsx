@@ -2,6 +2,8 @@ import { Label } from '@/shared/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/shared/components/ui/radio-group';
 import { cn } from '@/shared/lib/utils';
 
+import { useFindDoctor } from '@/features/doctor/hooks/use-find-doctor';
+
 type DesktopFilterProps = {
    specialties: { id: string; name: string }[];
    className?: string;
@@ -40,11 +42,16 @@ type RadioItemsGroupProps = {
 };
 
 const RadioItemsGroup = ({ label, options }: RadioItemsGroupProps) => {
+   const { filter, updateFilter } = useFindDoctor();
+
    return (
-      <RadioGroup>
+      <RadioGroup value={filter} onValueChange={updateFilter}>
          {options.map((option) => (
             <div key={option.id} className='flex items-center space-x-2'>
-               <RadioGroupItem value={option.id} id={`${label}-${option.id}`} />
+               <RadioGroupItem
+                  value={option.name}
+                  id={`${label}-${option.id}`}
+               />
 
                <Label
                   htmlFor={`${label}-${option.id}`}

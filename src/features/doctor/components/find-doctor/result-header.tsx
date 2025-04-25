@@ -5,17 +5,17 @@ import {
    CardTitle,
 } from '@/shared/components/ui/card';
 
-type ResultHeaderProps = {
-   resultCount: number;
-};
+import { useFindDoctor } from '@/features/doctor/hooks/use-find-doctor';
 
-export const ResultHeader = ({ resultCount }: ResultHeaderProps) => {
+export const ResultHeader = () => {
+   const { filteredDoctors } = useFindDoctor();
+
    return (
       <Card>
          <CardHeader>
             <CardTitle className='text-2xl'>Search Results</CardTitle>
             <CardDescription>
-               Found {resultCount} doctors matching your criteria
+               Found {filteredDoctors.length} doctors matching your criteria
             </CardDescription>
          </CardHeader>
       </Card>

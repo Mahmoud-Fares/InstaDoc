@@ -8,8 +8,9 @@ import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
 import { cn } from '@/shared/lib/utils';
 
-import { DesktopFilter } from './desktop-filter';
-import { MobileFilter } from './mobile-filter';
+import { DesktopFilter } from '@/features/doctor/components/find-doctor/desktop-filter';
+import { MobileFilter } from '@/features/doctor/components/find-doctor/mobile-filter';
+import { useFindDoctor } from '@/features/doctor/hooks/use-find-doctor';
 
 type SearchFilterProps = {
    className?: string;
@@ -24,10 +25,11 @@ const SPECIALTIES = [
    { id: '5', name: 'Orthopedics' },
    { id: '6', name: 'Gynecology' },
    { id: '7', name: 'Urology' },
-   { id: '8', name: 'Pediatrics' },
 ];
 
 export const SearchFilter = ({ className }: SearchFilterProps) => {
+   const { name, updateName } = useFindDoctor();
+
    return (
       <Card
          className={cn(
@@ -45,7 +47,12 @@ export const SearchFilter = ({ className }: SearchFilterProps) => {
                   <Label htmlFor='search' className='text-lg'>
                      Search
                   </Label>
-                  <Input id='search' placeholder='Search by name' />
+                  <Input
+                     id='search'
+                     placeholder='Search by name'
+                     value={name}
+                     onChange={(e) => updateName(e.target.value)}
+                  />
                </div>
 
                <MobileFilter specialties={SPECIALTIES} className='lg:hidden' />
