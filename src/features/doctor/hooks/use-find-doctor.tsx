@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useQueryState } from 'nuqs';
 import { useDebounce } from 'use-debounce';
 
 import { useDoctorDataStore } from '@/features/doctor/store/doctor-data-store';
 import { useDoctorFilterStore } from '@/features/doctor/store/doctor-filter-store';
 
 export const useFindDoctor = () => {
-   const [searchParams, setSearchParams] = useSearchParams();
+   const [nameQuery, setNameQuery] = useQueryState('name');
+   const [filterQuery, setFilterQuery] = useQueryState('filter');
 
    const doctors = useDoctorDataStore((s) => s.doctors);
 
@@ -21,29 +22,26 @@ export const useFindDoctor = () => {
 
    // Load from URL on mount
    useEffect(() => {
-      setName(searchParams.get('name') || '');
-      setFilter(searchParams.get('filter') || '');
-   }, [searchParams, setName, setFilter]);
+      setName(nameQuery || '');
+      setFilter(filterQuery || '');
+   }, [nameQuery, filterQuery, setName, setFilter]);
 
    // Handlers to update store + URL
    const updateName = (name: string) => {
       setName(name);
-      searchParams.set('name', name);
-      setSearchParams(searchParams);
+      setNameQuery(name);
    };
 
    const updateFilter = (filter: string) => {
       setFilter(filter);
-      searchParams.set('filter', filter);
-      setSearchParams(searchParams);
+      setFilterQuery(filter);
    };
 
    const clearFilters = () => {
       setName('');
       setFilter('');
-      searchParams.delete('name');
-      searchParams.delete('filter');
-      setSearchParams(searchParams);
+      setNameQuery(null);
+      setFilterQuery(null);
    };
 
    const filteredDoctors = doctors.filter((doc) => {
