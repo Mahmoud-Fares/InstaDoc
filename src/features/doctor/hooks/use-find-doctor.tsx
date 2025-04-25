@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
+import { useDebounce } from 'use-debounce';
 
 import { useDoctorDataStore } from '@/features/doctor/store/doctor-data-store';
 import { useDoctorFilterStore } from '@/features/doctor/store/doctor-filter-store';
@@ -11,10 +12,12 @@ export const useFindDoctor = () => {
    const doctors = useDoctorDataStore((s) => s.doctors);
 
    const name = useDoctorFilterStore((s) => s.name);
+   const [debouncedName] = useDebounce(name, 400);
    const setName = useDoctorFilterStore((s) => s.setName);
 
    const filter = useDoctorFilterStore((s) => s.filter);
    const setFilter = useDoctorFilterStore((s) => s.setFilter);
+   const [debouncedFilter] = useDebounce(filter, 400);
 
    // Load from URL on mount
    useEffect(() => {
@@ -44,15 +47,17 @@ export const useFindDoctor = () => {
    };
 
    const filteredDoctors = doctors.filter((doc) => {
-      if (!name && !filter) return true;
+      if (!debouncedName && !debouncedFilter) return true;
 
-      const matchesName = doc.name.toLowerCase().includes(name.toLowerCase());
+      const matchesName = doc.name
+         .toLowerCase()
+         .includes(debouncedName.toLowerCase());
 
       const matchesFilter =
-         filter === 'None' ||
+         debouncedFilter === 'None' ||
          doc.specialties
             .map((s) => s.toLowerCase())
-            .includes(filter.toLowerCase());
+            .includes(debouncedFilter.toLowerCase());
 
       return matchesName && matchesFilter;
    });
