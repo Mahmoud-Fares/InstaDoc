@@ -1,5 +1,10 @@
 export { useAuth } from '@/features/auth/hooks/use-auth';
-export { getUserBySlug, isDoctor, isPatient } from '@/features/auth/utils';
+export {
+   getUserById,
+   getUserBySlug,
+   isDoctor,
+   isPatient,
+} from '@/features/auth/utils';
 
 export { SignedIn } from '@/features/auth/components/view-control/signed-in';
 export { SignedOut } from '@/features/auth/components/view-control/signed-out';

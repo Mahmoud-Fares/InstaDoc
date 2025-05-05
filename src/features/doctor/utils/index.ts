@@ -1,4 +1,4 @@
-import { Doctor } from '../../../shared/types/doctor';
+import { Doctor } from '@/shared/types/doctor';
 
 // * chatgpt helped me with this function
 export function getFirstAvailable(schedule: Doctor['schedule']) {

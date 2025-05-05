@@ -2,8 +2,7 @@
    "editor.formatOnSave": true,
    "editor.codeActionsOnSave": {
       "source.fixAll": "always",
-      "source.organizeImports": "always",
-      "source.addMissingImports": "explicit"
+      "source.organizeImports": "always"
    },
    "files.associations": {
       "*.css": "tailwindcss"

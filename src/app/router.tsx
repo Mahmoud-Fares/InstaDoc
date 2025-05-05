@@ -13,6 +13,7 @@ const SignUpPage = lazy(() => import('@/app/pages/auth/signup'));
 
 const Home = lazy(() => import('@/app/pages/home'));
 const Profile = lazy(() => import('@/app/pages/profile'));
+const Appointments = lazy(() => import('@/app/pages/appointment'));
 const Settings = lazy(() => import('@/app/pages/settings'));
 const UpdateAvailability = lazy(
    () => import('@/app/pages/settings/updata-availability')
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
          },
       ],
    },
-   // Protected rotes group
+   // Protected routes group
    {
       path: '/',
       element: <ProtectedLayout />,
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
          {
             path: 'profile/:slug?',
             element: <Profile />,
+         },
+         {
+            path: 'appointments',
+            element: <Appointments />,
          },
          {
             path: 'settings',
@@ -66,7 +71,7 @@ export const router = createBrowserRouter([
          },
       ],
    },
-   // Auth rotes group
+   // Auth routes group
    {
       path: '/',
       element: <AuthLayout />,

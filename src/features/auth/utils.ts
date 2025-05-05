@@ -22,3 +22,9 @@ export function getUserBySlug(slug: string) {
 
    return users.find((user) => user.slug === slug);
 }
+
+export function getUserById(id: string) {
+   const users = useAuthStore.getState().users;
+
+   return users.find((user) => user.id === id);
+}
