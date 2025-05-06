@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
+import Spinner from '@/shared/components/spinner';
 import { Button } from '@/shared/components/ui/button';
 import {
    Form,
@@ -16,50 +16,44 @@ import {
 } from '@/shared/components/ui/form';
 import { Input } from '@/shared/components/ui/input';
 import { PasswordInput } from '@/shared/components/ui/password';
+import { PhoneInput } from '@/shared/components/ui/phone';
+import {
+   Select,
+   SelectContent,
+   SelectItem,
+   SelectTrigger,
+   SelectValue,
+} from '@/shared/components/ui/select';
 
-const formSchema = z
-   .object({
-      name: z
-         .string()
-         .min(2, { message: 'Name must be at least 2 characters long' }),
-      email: z.string().email({ message: 'Invalid email address' }),
-      password: z
-         .string()
-         .min(6, { message: 'Password must be at least 6 characters long' })
-         .regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
-      confirmPassword: z.string(),
-   })
-   .refine((data) => data.password === data.confirmPassword, {
-      path: ['confirmPassword'],
-      message: 'Passwords do not match',
-   });
-
-type FormValues = z.infer<typeof formSchema>;
+import { useAuth } from '@/features/auth';
+import { registerSchema } from '@/features/auth/schema';
+import { RegisterCredentialsType } from '@/features/auth/types';
 
 export function SignupForm() {
-   const form = useForm<FormValues>({
-      resolver: zodResolver(formSchema),
+   const { register, isLoading } = useAuth();
+
+   const form = useForm<RegisterCredentialsType>({
+      resolver: zodResolver(registerSchema),
       defaultValues: {
          name: '',
          email: '',
          password: '',
          confirmPassword: '',
+         gender: 'male',
+         role: 'patient',
       },
    });
 
-   async function onSubmit(values: FormValues) {
+   async function onSubmit(values: RegisterCredentialsType) {
       try {
-         console.log(values);
-         toast(
-            <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-               <code className='text-white'>
-                  {JSON.stringify(values, null, 2)}
-               </code>
-            </pre>
-         );
-      } catch (error) {
-         console.error('Form submission error', error);
-         toast.error('Failed to submit the form. Please try again.');
+         await register(values);
+      } catch (error: any) {
+         const errorMessage =
+            error.response.data.message ||
+            'Failed to submit the form. Please try again.';
+
+         console.error('Form submission error', errorMessage);
+         toast.error(errorMessage);
       }
    }
 
@@ -75,6 +69,24 @@ export function SignupForm() {
                         <FormLabel htmlFor='name'>Full Name</FormLabel>
                         <FormControl>
                            <Input id='name' placeholder='John Doe' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                     </FormItem>
+                  )}
+               />
+
+               <FormField
+                  control={form.control}
+                  name='phone'
+                  render={({ field }) => (
+                     <FormItem>
+                        <FormLabel>Phone number</FormLabel>
+                        <FormControl className='w-full'>
+                           <PhoneInput
+                              placeholder='+201012345688'
+                              {...field}
+                              defaultCountry='EG'
+                           />
                         </FormControl>
                         <FormMessage />
                      </FormItem>
@@ -141,8 +153,62 @@ export function SignupForm() {
                   )}
                />
 
-               <Button type='submit' className='w-full'>
-                  Register
+               <FormField
+                  control={form.control}
+                  name='gender'
+                  render={({ field }) => (
+                     <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <Select
+                           onValueChange={field.onChange}
+                           defaultValue={field.value}
+                        >
+                           <FormControl>
+                              <SelectTrigger>
+                                 <SelectValue placeholder='Select a gender' />
+                              </SelectTrigger>
+                           </FormControl>
+
+                           <SelectContent>
+                              <SelectItem value='male'>Male</SelectItem>
+                              <SelectItem value='female'>Female</SelectItem>
+                           </SelectContent>
+                        </Select>
+
+                        <FormMessage />
+                     </FormItem>
+                  )}
+               />
+
+               <FormField
+                  control={form.control}
+                  name='role'
+                  render={({ field }) => (
+                     <FormItem>
+                        <FormLabel>Role</FormLabel>
+                        <Select
+                           onValueChange={field.onChange}
+                           defaultValue={field.value}
+                        >
+                           <FormControl>
+                              <SelectTrigger>
+                                 <SelectValue placeholder='Select a role' />
+                              </SelectTrigger>
+                           </FormControl>
+
+                           <SelectContent>
+                              <SelectItem value='patient'>Patient</SelectItem>
+                              <SelectItem value='doctor'>Doctor</SelectItem>
+                           </SelectContent>
+                        </Select>
+
+                        <FormMessage />
+                     </FormItem>
+                  )}
+               />
+
+               <Button type='submit' className='w-full' disabled={isLoading}>
+                  {isLoading ? <Spinner /> : 'Register'}
                </Button>
             </div>
          </form>

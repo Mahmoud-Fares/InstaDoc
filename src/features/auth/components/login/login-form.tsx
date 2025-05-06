@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
 import Spinner from '@/shared/components/spinner';
 import { Button } from '@/shared/components/ui/button';
@@ -19,34 +18,30 @@ import { Input } from '@/shared/components/ui/input';
 import { PasswordInput } from '@/shared/components/ui/password';
 
 import { useAuth } from '@/features/auth';
-
-const formSchema = z.object({
-   email: z.string().email({ message: 'Invalid email address' }),
-   password: z
-      .string()
-      .min(6, { message: 'Password must be at least 6 characters long' })
-      .regex(/[a-zA-Z0-9]/, { message: 'Password must be alphanumeric' }),
-});
-
-export type LoginFormValues = z.infer<typeof formSchema>;
+import { loginSchema } from '@/features/auth/schema';
+import { LoginCredentialsType } from '@/features/auth/types';
 
 export function LoginForm() {
    const { login, isLoading } = useAuth();
 
-   const form = useForm<LoginFormValues>({
-      resolver: zodResolver(formSchema),
+   const form = useForm<LoginCredentialsType>({
+      resolver: zodResolver(loginSchema),
       defaultValues: {
          email: 'patient@email.com',
          password: 'password',
       },
    });
 
-   const handleSubmit = async (values: LoginFormValues) => {
+   const handleSubmit = async (values: LoginCredentialsType) => {
       try {
          await login(values);
-      } catch (error) {
-         console.error('Form submission error', error);
-         toast.error('Failed to submit the form. Please try again.');
+      } catch (error: any) {
+         const errorMessage =
+            error.response.data.msg ||
+            'Failed to submit the form. Please try again.';
+
+         console.error('Form submission error', errorMessage);
+         toast.error(errorMessage);
       }
    };
 

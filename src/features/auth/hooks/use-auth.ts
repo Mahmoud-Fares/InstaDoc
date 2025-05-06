@@ -1,12 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 
-import { LoginProps, useAuthStore } from '@/features/auth/store/auth-store';
+import { useAuthStore } from '@/features/auth/store/auth-store';
+import {
+   LoginCredentialsType,
+   RegisterCredentialsType,
+} from '@/features/auth/types';
 
 export const useAuth = () => {
    const navigate = useNavigate();
 
    const currentUser = useAuthStore((state) => state.currentUser);
    const isLoading = useAuthStore((state) => state.isLoading);
+   const storeRegister = useAuthStore((state) => state.register);
    const storeLogin = useAuthStore((state) => state.login);
    const logout = useAuthStore((state) => state.logout);
 
@@ -16,7 +21,9 @@ export const useAuth = () => {
    const isDoctor = currentUser?.role === 'doctor';
    const isPatient = currentUser?.role === 'patient';
 
-   const login = (credentials: Omit<LoginProps, 'navigate'>) =>
+   const register = (credentials: RegisterCredentialsType) =>
+      storeRegister({ ...credentials, navigate });
+   const login = (credentials: LoginCredentialsType) =>
       storeLogin({ ...credentials, navigate });
 
    return {
@@ -26,6 +33,7 @@ export const useAuth = () => {
       isDoctor,
       isPatient,
 
+      register,
       login,
       logout,
    };

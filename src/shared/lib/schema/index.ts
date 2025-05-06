@@ -14,12 +14,13 @@ export const phoneValidation = z
 
 export const passwordValidation = z
    .string()
-   .min(8, 'Password must be at least 8 characters')
-   .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-   .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-   .regex(/[0-9]/, 'Password must contain at least one number');
+   .min(8, 'Password must be at least 8 characters');
 
 export const dateValidation = z.coerce.date({
    required_error: 'Date is required',
    invalid_type_error: 'Please enter a valid date',
 });
+
+export const genderValidation = z.enum(['male', 'female']);
+
+export const roleValidation = z.enum(['doctor', 'patient']);

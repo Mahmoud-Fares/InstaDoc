@@ -1,67 +1,83 @@
-import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'sonner';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { wait } from '@/shared/lib/utils';
-import { AuthUser } from '@/shared/types';
-
+import { AUTH_API } from '@/features/auth/api';
+import { AuthState } from '@/features/auth/types';
 import { DOCTORS } from '@/features/doctor';
 import { PATIENTS } from '@/features/patient';
 
-export type LoginProps = {
-   email: string;
-   password: string;
-   navigate: NavigateFunction;
-};
-
-type AuthState = {
-   currentUser: Omit<AuthUser, 'password'> | null;
-   users: AuthUser[];
-
-   isLoading: boolean;
-
-   login: ({ email, password, navigate }: LoginProps) => Promise<void>;
-   logout: () => void;
-};
-
 export const useAuthStore = create<AuthState>()(
    persist(
-      (set, get) => ({
+      (set) => ({
          currentUser: null,
+         token: '',
+         // todo: we need to remove this (but for now we will use it)
          users: [...PATIENTS, ...DOCTORS],
 
          isLoading: false,
 
+         register: async ({ navigate, ...props }) => {
+            set({ isLoading: true });
+
+            try {
+               const { data: authData } = await AUTH_API.register(props);
+               set({
+                  token: authData.token,
+               });
+
+               const { data: userData } = await AUTH_API.me();
+               set({
+                  currentUser: userData,
+                  isLoading: false,
+               });
+
+               toast.success('Successfully signed up!');
+
+               navigate('/dashboard', { viewTransition: true });
+            } catch (error: any) {
+               throw error;
+            } finally {
+               set({ isLoading: false });
+            }
+         },
+
          login: async ({ email, password, navigate }) => {
             set({ isLoading: true });
 
-            await wait(1000);
-
-            const authenticatedUser = get().users.find(
-               (user) => user.email === email && user.password === password
-            );
-
-            if (authenticatedUser) {
+            try {
+               const { data: authData } = await AUTH_API.login({
+                  email,
+                  password,
+               });
                set({
-                  currentUser: authenticatedUser,
+                  token: authData.token,
+               });
+
+               const { data: userData } = await AUTH_API.me();
+               set({
+                  currentUser: userData,
                   isLoading: false,
                });
 
                toast.success('Successfully logged in!');
 
                navigate('/dashboard', { viewTransition: true });
-            } else {
+            } catch (error: any) {
+               throw error;
+            } finally {
                set({ isLoading: false });
-
-               toast.error('Invalid email or password');
             }
          },
 
-         logout: () => {
-            set({ currentUser: null });
-
-            toast.success('Logged out successfully');
+         logout: async () => {
+            try {
+               await AUTH_API.logout();
+               set({ currentUser: null, token: '' });
+               toast.success('Logged out successfully');
+            } catch (error: any) {
+               throw error;
+            }
          },
       }),
       {
@@ -69,7 +85,7 @@ export const useAuthStore = create<AuthState>()(
 
          partialize: (state) => ({
             currentUser: state.currentUser,
-            users: state.users,
+            token: state.token,
          }),
       }
    )
