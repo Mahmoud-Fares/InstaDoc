@@ -24,6 +24,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# secrets
+.env
+
 # npm config vm fix (for my sandbox)
 .npmrc
 .vercel

@@ -43,6 +43,7 @@
    ],
    "reusableImportPatterns": {
       "sharedImports": [
+         "src/shared/**",
          "src/shared/components/**",
          "src/shared/hooks/**",
          "src/shared/lib/**",
